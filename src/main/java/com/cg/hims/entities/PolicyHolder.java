@@ -16,7 +16,7 @@ public class PolicyHolder {
 	private int policyId;
 	private HomeAddress address;
 	public PolicyHolder()
-	{}
+	{  }
 	public int getPolicyHolderId() {
 		return policyHolderId;
 	}

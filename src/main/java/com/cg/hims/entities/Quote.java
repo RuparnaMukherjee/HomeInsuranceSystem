@@ -14,7 +14,7 @@ public class Quote {
 	private double medicalExpense;
 	private double deductibleAmount;
 	public Quote()
-	{}
+	{ }
 	public int getQuoteId() {
 		return quoteId;
 	}
