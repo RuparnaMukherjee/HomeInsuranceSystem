@@ -1,11 +1,17 @@
 package com.cg.hims.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Admin {
-	
-	
+	@Id
 	private int adminId;
 	private String adminName;
 	private String contact;
+	public Admin() {
+		
+	}
 	public Admin(int adminId,String adminName,String contact) {
 		this.adminId=adminId;
 		this.adminName=adminName;
@@ -30,6 +36,4 @@ public class Admin {
 		this.contact = contact;
 	}
 	
-	
-
 }

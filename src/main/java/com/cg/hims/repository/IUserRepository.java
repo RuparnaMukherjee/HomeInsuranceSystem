@@ -1,11 +1,11 @@
 package com.cg.hims.repository;
 
-import com.cg.hims.entities.User;
+import com.cg.hims.entities.UserTable;
 
 public interface IUserRepository {
-	public User addNewUser(User user);
+	public UserTable addNewUser(UserTable user);
 
-	public User signIn(User user);
+	public UserTable signIn(UserTable user);
 
-	public User signOut(User user);
+	public UserTable signOut(UserTable user);
 }

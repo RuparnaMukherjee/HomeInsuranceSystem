@@ -1,9 +1,15 @@
 package com.cg.hims.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Property {
 
-	
-	private int quoteId;
+	@Id
+	private int property_id;
 	private int marketValue;
 	private int yearBuilt;
 	private int squareFootage;
@@ -13,13 +19,16 @@ public class Property {
 	private int fullBathCount;
 	private int halfBathCount;
 	private boolean hasSwimmingPool;
+	@OneToOne
+	@JoinColumn(name="quote_id")
+	private Quote quote;
 	public Property()
 	{}
-	public int getQuoteId() {
-		return quoteId;
+	public Quote getQuote() {
+		return quote;
 	}
-	public void setQuoteId(int quoteId) {
-		this.quoteId = quoteId;
+	public void setQuote(Quote quote) {
+		this.quote = quote;
 	}
 	public int getMarketValue() {
 		return marketValue;

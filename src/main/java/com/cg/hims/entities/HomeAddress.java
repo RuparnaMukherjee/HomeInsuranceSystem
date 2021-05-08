@@ -1,9 +1,14 @@
 package com.cg.hims.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class HomeAddress {
 	
 	
-	
+	@Id
+	private int addressId;
 	private String residenceType;
 	private String addressLine1;
 	private String addressLine2;

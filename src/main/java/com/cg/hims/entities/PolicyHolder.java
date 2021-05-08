@@ -1,7 +1,14 @@
 package com.cg.hims.entities;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+@Entity
 public class PolicyHolder {
-
+	@Id
 	private int policyHolderId;
 	private String policyHolderName;
 	private String policyName;
@@ -14,6 +21,12 @@ public class PolicyHolder {
 	private String ssn;
 	private String emailId;
 	private int policyId;
+	
+	@ManyToOne
+	@JoinColumn(name="agent_id")
+	private Agent agent;
+	@OneToOne
+	@JoinColumn(name="address_id")
 	private HomeAddress address;
 	public PolicyHolder()
 	{}
@@ -89,11 +102,11 @@ public class PolicyHolder {
 	public void setPolicyId(int policyId) {
 		this.policyId = policyId;
 	}
-	public HomeAddress getAddress() {
-		return address;
-	}
-	public void setAddress(HomeAddress address) {
-		this.address = address;
-	}
+//	public HomeAddress getAddress() {
+//		return address;
+//	}
+//	public void setAddress(HomeAddress address) {
+//		this.address = address;
+//	}
 	
 }

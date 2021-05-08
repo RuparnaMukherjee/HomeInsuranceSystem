@@ -1,9 +1,13 @@
 package com.cg.hims.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Quote {
 	
 	
-	
+	@Id
 	private int quoteId;
 	private String premiumType;
 	private double premium;
