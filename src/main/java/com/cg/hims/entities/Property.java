@@ -19,16 +19,13 @@ public class Property {
 	private int fullBathCount;
 	private int halfBathCount;
 	private boolean hasSwimmingPool;
-	@OneToOne
-	@JoinColumn(name="quote_id")
-	private Quote quote;
 	public Property()
 	{}
-	public Quote getQuote() {
-		return quote;
+	public int getProperty_id() {
+		return property_id;
 	}
-	public void setQuote(Quote quote) {
-		this.quote = quote;
+	public void setProperty_id(int property_id) {
+		this.property_id = property_id;
 	}
 	public int getMarketValue() {
 		return marketValue;
@@ -84,13 +81,5 @@ public class Property {
 	public void setHasSwimmingPool(boolean hasSwimmingPool) {
 		this.hasSwimmingPool = hasSwimmingPool;
 	}
-	
-
-	
-	
-	
-	
-	
-	
 	
 }

@@ -26,17 +26,6 @@ public class Agent {
 	public Agent() {
 		
 	}
-//	public Agent(int agentId,String agentName,String designation,String salary,String address,String email,String mobileNo,List<PolicyHolder> policyHoldersList,List<Policy> policies) {
-//		this.agentId=agentId;
-//		this.agentName=agentName;
-//		this.designation=designation;
-//		this.salary=salary;
-//		this.address=address;
-//		this.email=email;
-//		this.mobileNo=mobileNo;
-//		this.policyHoldersList=policyHoldersList;
-//		this.policies=policies;
-//	}
 	public int getAgentId() {
 		return agentId;
 	}
@@ -79,18 +68,18 @@ public class Agent {
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
-//	public List<PolicyHolder> getPolicyHoldersList() {
-//		return policyHoldersList;
-//	}
-//	public void setPolicyHoldersList(List<PolicyHolder> policyHoldersList) {
-//		this.policyHoldersList = policyHoldersList;
-//	}
-//	public List<Policy> getPolicies() {
-//		return policies;
-//	}
-//	public void setPolicies(List<Policy> policies) {
-//		this.policies = policies;
-//	}
-	
+	public List<PolicyHolder> getPolicyHoldersList() {
+		return policyHoldersList;
+	}
+	public void setPolicyHoldersList(List<PolicyHolder> policyHoldersList) {
+		this.policyHoldersList = policyHoldersList;
+	}
+	public List<Policy> getPolicies() {
+		return policies;
+	}
+	public void setPolicies(List<Policy> policies) {
+		this.policies = policies;
+	}
+
 
 }

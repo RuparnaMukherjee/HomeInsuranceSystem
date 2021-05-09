@@ -3,4 +3,7 @@
 
 
 
-2)Flow of Control
+
+Quote Checking:-
+http://localhost:8081//quote/CreateQuote
+http://localhost:8081//quote/ViewALlQuotes

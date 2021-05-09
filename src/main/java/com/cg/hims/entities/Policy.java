@@ -14,15 +14,9 @@ public class Policy {
 	private String policyEndDate;
 	private int policyTerm;
 	private String policyStatus;
-	@OneToOne
-	@JoinColumn(name="quote_id")
-	private Quote quote;
 	@ManyToOne
 	@JoinColumn(name="agent_id")
 	private Agent agent;
-	@OneToOne
-	@JoinColumn(name="policy_holder_id")
-	private PolicyHolder policyHolder;
 	public Policy()
 	{}
 	public String getPolicyId() {
@@ -55,12 +49,11 @@ public class Policy {
 	public void setPolicyStatus(String policyStatus) {
 		this.policyStatus = policyStatus;
 	}
-	public Quote getQuote() {
-		return quote;
+	public Agent getAgent() {
+		return agent;
 	}
-	public void setQuoteId(Quote quote) {
-		this.quote = quote;
+	public void setAgent(Agent agent) {
+		this.agent = agent;
 	}
 	
-
 }

@@ -20,14 +20,15 @@ public class PolicyHolder {
 	private String isRetired;
 	private String ssn;
 	private String emailId;
-	private int policyId;
-	
-	@ManyToOne
-	@JoinColumn(name="agent_id")
-	private Agent agent;
 	@OneToOne
 	@JoinColumn(name="address_id")
 	private HomeAddress address;
+	@OneToOne
+	@JoinColumn(name="policy_id")
+	private Policy policy;
+	@ManyToOne
+	@JoinColumn(name="agent_id")
+	private Agent agent;
 	public PolicyHolder()
 	{}
 	public int getPolicyHolderId() {
@@ -96,17 +97,23 @@ public class PolicyHolder {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public int getPolicyId() {
-		return policyId;
+	public HomeAddress getAddress() {
+		return address;
 	}
-	public void setPolicyId(int policyId) {
-		this.policyId = policyId;
+	public void setAddress(HomeAddress address) {
+		this.address = address;
 	}
-//	public HomeAddress getAddress() {
-//		return address;
-//	}
-//	public void setAddress(HomeAddress address) {
-//		this.address = address;
-//	}
+	public Policy getPolicy() {
+		return policy;
+	}
+	public void setPolicy(Policy policy) {
+		this.policy = policy;
+	}
+	public Agent getAgent() {
+		return agent;
+	}
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
 	
 }
