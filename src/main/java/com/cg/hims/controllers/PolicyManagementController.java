@@ -21,47 +21,47 @@ import com.cg.hims.service.IPolicyServiceImpl;
 
 
 @RestController
-@RequestMapping("/quote")
+@RequestMapping("/quote") //Request Mapping tells what URL will initiate what method
 public class PolicyManagementController {
 	@Autowired
 	IPolicyServiceImpl policyImpl;
 	
 	
-	@GetMapping("/Check")
+	@GetMapping("/Check") //Shows the data available in table
 	public String check() {
 		return "checked";
 	}
 	
 	
-	@PostMapping("/CreatePolicy")
-	public Policy addPolicy(@RequestBody Policy policy) {
+	@PostMapping("/CreatePolicy") //We enter data into DB 
+	public Policy addPolicy(@RequestBody Policy policy) { //RequestBody is used because we use raw data in Postman for input
 		System.out.println("Policy Created");
 		return PolicyImpl.addPolicy(policy);
 	}
 	
 	
-	@GetMapping("/ViewAllPolicy")
+	@GetMapping("/ViewAllPolicy") //Shows the data available in table
 	public List<Policy> showAllPolicy() {
 		return policyImpl.showAllPolicy();
 	}
 	
 	
-	@GetMapping("/ViewPolicyById/{id}")
+	@GetMapping("/ViewPolicyById/{id}") //{id} is wildcard which means we can use ViewPolicyById/100 to extract the policy with 100 from DB
 	public Optional<Policy> findPolicyById(@PathVariable("id") int id) throws PolicyNotFoundException {
 		return PolicyImpl.findPolicyById(id);
 	}
 	
 	
-	@PutMapping("/UpdatePolicy")
+	@PutMapping("/UpdatePolicy") //updates the policy from raw data entered
 	public Policy updatePolicy(@RequestBody Policy policy) throws PolicyNotFoundException{
 		return PolicyImpl.updatePolicy(policy);
 	}
 	
 	
-	@DeleteMapping("/DeletePolicy/{id}")
+	@DeleteMapping("/DeletePolicy/{id}") //deletes the policy
 	public String removePolicy(@PathVariable("id") int id) throws PolicyNotFoundException {
-		// TODO Auto-generated method stub
-		return PolicyImpl.removePolicy(id);
+		
+				return PolicyImpl.removePolicy(id);
 	}
 
 }
