@@ -1,13 +1,35 @@
 package com.cg.hims.entities;
 
-public class Policy {
+import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Policy implements Serializable {
+	
+	@Id
 	private String policyId;
 	private String policyEffectiveDate;
 	private String policyEndDate;
 	private int policyTerm;
 	private String policyStatus;
-	private int quoteId;
+		
+	@ManyToOne
+	@JoinColumn(name= "agent_id")
+	private Agent agent;
+	
+	@OneToOne
+	@JoinColumn(name= "quote_id")
+	private Quote quote;
+	
+	@OneToOne
+	@JoinColumn(name= "policy_holder_id")
+	private PolicyHolder policyholder;
+	
 	public Policy()
 	{}
 	public String getPolicyId() {
@@ -40,12 +62,27 @@ public class Policy {
 	public void setPolicyStatus(String policyStatus) {
 		this.policyStatus = policyStatus;
 	}
-	public int getQuoteId() {
-		return quoteId;
+	
+	public Quote getQuote() {
+		return quote;
 	}
-	public void setQuoteId(int quoteId) {
-		this.quoteId = quoteId;
+	public Agent getAgent() {
+		return agent;
 	}
+	public PolicyHolder getPolicyHolder()
+	{
+		return policyholder;
+	}
+	public void setQuoteId(Quote quote) {
+		this.quote = quote;
+	}
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+	public void setPolicyHolder(PolicyHolder policyholder) {
+		this.policyholder = policyholder;
+	}
+	
 	
 
 }
