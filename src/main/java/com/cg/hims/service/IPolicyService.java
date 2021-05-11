@@ -1,10 +1,12 @@
 package com.cg.hims.service;
 
 import java.util.List;
+import java.util.*;
 
 import com.cg.hims.entities.Policy;
 import com.cg.hims.exceptions.PolicyNotFoundException;
 
+import java.util.Optional;
 public interface IPolicyService {
 
 	public Policy addPolicy(Policy policy);
