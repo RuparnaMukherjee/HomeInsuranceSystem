@@ -5,6 +5,9 @@ import java.util.*;
 import com.cg.hims.entities.Quote;
 import com.cg.hims.exceptions.QuoteNotFoundException;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 public interface IQuoteService {
 
 	public Quote addQuote(Quote quote);

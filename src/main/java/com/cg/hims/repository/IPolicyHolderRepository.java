@@ -2,20 +2,26 @@ package com.cg.hims.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
 import com.cg.hims.entities.PolicyHolder;
 import com.cg.hims.exceptions.PolicyHolderNotFoundException;
 
-public interface IPolicyHolderRepository {
+@Repository
+public interface IPolicyHolderRepository extends JpaRepository<PolicyHolder,Integer>{
 
-	public PolicyHolder addPolicyHolder(PolicyHolder policyHolder);
+	//public PolicyHolder addPolicyHolder(PolicyHolder policyHolder);
 
-	public PolicyHolder updatePolicyHolder(PolicyHolder policyHolder) throws PolicyHolderNotFoundException;
+	//public PolicyHolder updatePolicyHolder(PolicyHolder policyHolder) throws PolicyHolderNotFoundException;
 
-	public PolicyHolder findPolicyHolderById(int id) throws PolicyHolderNotFoundException;
+	//public PolicyHolder findPolicyHolderById(int id) throws PolicyHolderNotFoundException;
 
-	public PolicyHolder removePolicyHolder(int id) throws PolicyHolderNotFoundException;
+	//public PolicyHolder removePolicyHolder(int id) throws PolicyHolderNotFoundException;
 
-	public List<PolicyHolder> showAllPolicyHolders();
+	@Query("select p.policyHolderId,p.policyHolderName from PolicyHolder p")
+	List<PolicyHolder> showAllPolicyHolders();
 	
 	
 	//public  void makePayment();

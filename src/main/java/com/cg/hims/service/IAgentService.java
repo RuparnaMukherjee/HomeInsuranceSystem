@@ -11,9 +11,9 @@ public interface IAgentService {
 
 	public Agent updateAgent(Agent agent) throws AgentNotFoundException;
 
-	public Agent removeAgent(int agentId) throws AgentNotFoundException;
+	public String removeAgent(int agentId) throws AgentNotFoundException;
 
-	public Agent findAgentById(int agentId) throws AgentNotFoundException;
+	public java.util.Optional findAgentById(int agentId) throws AgentNotFoundException;
 
 	public List<Agent> viewAllAgents();
 

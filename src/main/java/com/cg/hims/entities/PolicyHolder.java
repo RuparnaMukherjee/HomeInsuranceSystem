@@ -2,13 +2,18 @@ package com.cg.hims.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class PolicyHolder {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int policyHolderId;
 	private String policyHolderName;
 	private String policyName;
@@ -20,14 +25,16 @@ public class PolicyHolder {
 	private String isRetired;
 	private String ssn;
 	private String emailId;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="address_id")
 	private HomeAddress address;
 	@OneToOne
 	@JoinColumn(name="policy_id")
+	@JsonIgnore
 	private Policy policy;
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="agent_id")
+	//@JsonIgnore
 	private Agent agent;
 	public PolicyHolder()
 	{}
