@@ -20,6 +20,7 @@ public class IPolicyServiceImpl implements IPolicyService{
 	@Autowired
 	IPolicyRepository policyDao;
 
+	//add policy
 	@Override
 	public Policy addPolicy(Policy policy) {
 		// TODO Auto-generated method stub
@@ -27,6 +28,7 @@ public class IPolicyServiceImpl implements IPolicyService{
 		return policy;
 	}
 
+	//update policy
 	@Override
 	public Policy updatePolicy(Policy policy) throws PolicyNotFoundException {
 		// TODO Auto-generated method stub
@@ -36,6 +38,8 @@ public class IPolicyServiceImpl implements IPolicyService{
 		return policy;
 	}
 
+	
+	//view policy by id
 	@Override
 	public Optional<Policy> findPolicyById(String policyId) throws PolicyNotFoundException {
 		// TODO Auto-generated method stub
@@ -44,6 +48,7 @@ public class IPolicyServiceImpl implements IPolicyService{
 		return policyDao.findById(policyId);
 	}
 
+	//delete a policy
 	@Override
 	public String removePolicy(String policyId) throws PolicyNotFoundException {
 		// TODO Auto-generated method stub
@@ -52,7 +57,9 @@ public class IPolicyServiceImpl implements IPolicyService{
 		policyDao.deleteById(policyId);
 		return "Policy Deleted Successfully";
 	}
+	
 
+	//Show all policies
 	@Override
 	public List<Policy> showAllPolicies() {
 		// TODO Auto-generated method stub
