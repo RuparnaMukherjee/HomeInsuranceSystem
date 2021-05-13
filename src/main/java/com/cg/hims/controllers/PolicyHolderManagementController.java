@@ -65,7 +65,7 @@ public class PolicyHolderManagementController {
 		// TODO Auto-generated method stub
 		return holderimpl.removePolicyHolder(id);
 	}
-	
+	//Getting all policy holders by id
 	@GetMapping("/GetPolicyHolders/{id}")
 	public List<Object> getPolicyHolders(@PathVariable("id") int id){
 		return holderimpl.viewPolicyHolder(id);
