@@ -23,6 +23,7 @@ public class IUserServiceImpl implements IUserService {
 	@PersistenceContext
     private EntityManager entityManager;
 
+	//add user
 	@Override
 	public UserTable addNewUser(UserTable user) {
 		// TODO Auto-generated method stub
@@ -30,6 +31,7 @@ public class IUserServiceImpl implements IUserService {
 		return user;
 	}
 
+	//User sign-in
 	@Override
 	public String signIn(String userName,String password) throws UserNotFoundException {
 		// TODO Auto-generated method stub
@@ -41,6 +43,7 @@ public class IUserServiceImpl implements IUserService {
 		return "Logged In SuccessFully";
 	}
 
+	//User sign-out
 	@Override
 	public String signOut(UserTable user) {
 		// TODO Auto-generated method stub
