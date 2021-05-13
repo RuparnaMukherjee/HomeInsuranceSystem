@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.hims.entities.Agent;
+import com.cg.hims.entities.PolicyHolder;
 import com.cg.hims.exceptions.AgentNotFoundException;
 import com.cg.hims.repository.IAgentRepository;
 
@@ -63,4 +64,11 @@ public class IAgentServiceImpl implements IAgentService{
 		return temp;
 	}
 
+	//@Override
+//	public List<PolicyHolder> viewPolicyHolder() {
+//		// TODO Auto-generated method stub
+//		return agent_repo.viewPolicyHolder();
+//	}
+
+	
 }

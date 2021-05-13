@@ -1,22 +1,26 @@
 package com.cg.hims.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class HomeAddress {
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int addressId;
 	private String residenceType;
 	private String addressLine1;
 	private String addressLine2;
 	private String city;
 	private String state;
+	@Column(unique=true)
+	@Pattern(regexp="[0-9] {6}")
 	private String zip;
 	private String residenceUse;
 	public HomeAddress()

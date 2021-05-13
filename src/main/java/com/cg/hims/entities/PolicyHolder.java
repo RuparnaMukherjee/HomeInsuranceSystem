@@ -1,5 +1,7 @@
 package com.cg.hims.entities;
 
+import java.sql.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,16 +15,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class PolicyHolder {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int policyHolderId;
 	private String policyHolderName;
 	private String policyName;
 	private String premiumType;
 	private String creditCard;
-	private String dob;
+	private Date dob;
 	private String occupation;
 	private double annualIncome;
-	private String isRetired;
+	private boolean isRetired;
 	private String ssn;
 	private String emailId;
 	@OneToOne(cascade = {CascadeType.ALL})
@@ -33,7 +35,7 @@ public class PolicyHolder {
 	@JsonIgnore
 	private Policy policy;
 	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="agent_id")
+	@JoinColumn(name="agent_id",insertable=false,updatable=true)
 	//@JsonIgnore
 	private Agent agent;
 	public PolicyHolder()
@@ -68,10 +70,10 @@ public class PolicyHolder {
 	public void setCreditCard(String creditCard) {
 		this.creditCard = creditCard;
 	}
-	public String getDob() {
+	public Date getDob() {
 		return dob;
 	}
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 	public String getOccupation() {
@@ -86,10 +88,10 @@ public class PolicyHolder {
 	public void setAnnualIncome(double annualIncome) {
 		this.annualIncome = annualIncome;
 	}
-	public String getIsRetired() {
+	public boolean getIsRetired() {
 		return isRetired;
 	}
-	public void setIsRetired(String isRetired) {
+	public void setIsRetired(boolean isRetired) {
 		this.isRetired = isRetired;
 	}
 	public String getSsn() {

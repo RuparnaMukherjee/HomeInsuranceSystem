@@ -1,16 +1,20 @@
 package com.cg.hims.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Admin {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int adminId;
 	private String adminName;
+	@Column(unique=true)
+	@Pattern(regexp="[0-9]{10}")
 	private String contact;
 	public Admin() {
 		

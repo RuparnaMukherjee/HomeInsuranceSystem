@@ -1,5 +1,7 @@
 package com.cg.hims.entities;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,14 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Policy {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private String policyId;
-	private String policyEffectiveDate;
-	private String policyEndDate;
+	private Date policyEffectiveDate;
+	private Date policyEndDate;
 	private int policyTerm;
 	private String policyStatus;
 	@ManyToOne
@@ -28,16 +32,16 @@ public class Policy {
 	public void setPolicyId(String policyId) {
 		this.policyId = policyId;
 	}
-	public String getPolicyEffectiveDate() {
+	public Date getPolicyEffectiveDate() {
 		return policyEffectiveDate;
 	}
-	public void setPolicyEffectiveDate(String policyEffectiveDate) {
+	public void setPolicyEffectiveDate(Date policyEffectiveDate) {
 		this.policyEffectiveDate = policyEffectiveDate;
 	}
-	public String getPolicyEndDate() {
+	public Date getPolicyEndDate() {
 		return policyEndDate;
 	}
-	public void setPolicyEndDate(String policyEndDate) {
+	public void setPolicyEndDate(Date policyEndDate) {
 		this.policyEndDate = policyEndDate;
 	}
 	public int getPolicyTerm() {

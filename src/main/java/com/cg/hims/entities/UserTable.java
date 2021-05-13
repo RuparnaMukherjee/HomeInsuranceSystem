@@ -18,9 +18,6 @@ public class UserTable {
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int userId;
-	@Column(nullable=false,unique=true)
 	@Pattern(regexp="[a-zA-Z0-9_.@]{5,10}")
 	private String userName;
 	@Column(nullable=false)

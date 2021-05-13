@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.hims.entities.Agent;
 import com.cg.hims.entities.PolicyHolder;
 import com.cg.hims.exceptions.PolicyHolderNotFoundException;
 import com.cg.hims.service.IPolicyHolderServiceImpl;
@@ -39,7 +40,7 @@ public class PolicyHolderManagementController {
 	@GetMapping("/ViewAllPolicyHolder")
 	public ResponseEntity<List<PolicyHolder>> showAllpolicyHolders() {
 		List<PolicyHolder> h_list=holderimpl.showAllPolicyHolders();
-		if(h_list.isEmpty())
+		if(h_list==null)
 			return new ResponseEntity("PolicyHolder not found",HttpStatus.NOT_FOUND);
 		return new ResponseEntity<List<PolicyHolder>>(h_list,HttpStatus.OK);
 	}
@@ -63,6 +64,11 @@ public class PolicyHolderManagementController {
 	public String removePolicyHolder(@PathVariable("id") int id) throws PolicyHolderNotFoundException {
 		// TODO Auto-generated method stub
 		return holderimpl.removePolicyHolder(id);
+	}
+	
+	@GetMapping("/GetPolicyHolders/{id}")
+	public List<Object> getPolicyHolders(@PathVariable("id") int id){
+		return holderimpl.viewPolicyHolder(id);
 	}
 
 }

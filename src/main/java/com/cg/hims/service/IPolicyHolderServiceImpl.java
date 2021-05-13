@@ -5,8 +5,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.hims.entities.Agent;
 import com.cg.hims.entities.PolicyHolder;
 import com.cg.hims.exceptions.PolicyHolderNotFoundException;
+import com.cg.hims.repository.IAgentRepository;
 import com.cg.hims.repository.IPolicyHolderRepository;
 
 
@@ -16,6 +18,8 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
 	     
     @Autowired 
 	IPolicyHolderRepository holderdao;
+    @Autowired
+    IAgentRepository agentDao;
     
     @Override
     public PolicyHolder addPolicyHolder(PolicyHolder policyHolder)
@@ -55,9 +59,13 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
     @Override
     public List<PolicyHolder> showAllPolicyHolders()
     {
-    	List<PolicyHolder> h_list=holderdao.showAllPolicyHolders();
-    	return h_list;
-    	
+    	return holderdao.findAll();
+    	//return h_list;
     }
+    public List<Object> viewPolicyHolder(int id) {
+		// TODO Auto-generated method stub
+    	Optional<Agent> agent=agentDao.findById(id);
+		return holderdao.findAllByAgent(agent);
+	}
     
 }

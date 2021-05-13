@@ -1,29 +1,39 @@
 package com.cg.hims.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Agent {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int agentId;
 	private String agentName;
 	private String designation;
 	private String salary; 
 	private String address;
+	@Column(unique=true)
+	@Pattern(regexp="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
 	private String email;
+	@Column(unique=true)
+	@Pattern(regexp="[0-9] {10}")
 	private String mobileNo;
 	@OneToMany(mappedBy="agent",cascade=CascadeType.ALL)
-	private List<PolicyHolder> policyHoldersList=new ArrayList<>();
+	private Set<PolicyHolder> policyHoldersList=new HashSet<>();
 	@OneToMany(mappedBy="agent",cascade=CascadeType.ALL)
 	private List<Policy> policies;
 	public Agent() {
@@ -71,10 +81,10 @@ public class Agent {
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
-	public List<PolicyHolder> getPolicyHoldersList() {
+	public Set<PolicyHolder> getPolicyHoldersList() {
 		return policyHoldersList;
 	}
-	public void setPolicyHoldersList(List<PolicyHolder> policyHoldersList) {
+	public void setPolicyHoldersList(HashSet<PolicyHolder> policyHoldersList) {
 		this.policyHoldersList = policyHoldersList;
 	}
 	public List<Policy> getPolicies() {
