@@ -20,7 +20,7 @@ public class HomeAddress {
 	private String city;
 	private String state;
 	@Column(unique=true)
-	@Pattern(regexp="[0-9] {6}")
+	@Pattern(regexp="[0-9]{6}")
 	private String zip;
 	private String residenceUse;
 	public HomeAddress()

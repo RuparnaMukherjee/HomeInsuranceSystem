@@ -23,7 +23,9 @@ public interface IPolicyHolderRepository extends JpaRepository<PolicyHolder,Inte
 	//public PolicyHolder removePolicyHolder(int id) throws PolicyHolderNotFoundException;
 
 	//public  void makePayment();
-		@Query("Select a.policyHolderId,a.policyHolderName from PolicyHolder a where a.agent=?1")
-	    List<Object> findAllByAgent(Optional<Agent> agent);
+		@Query("Select a from PolicyHolder a where a.agent=?1")
+	    List<PolicyHolder> findAllByAgent(Optional<Agent> agent);
+		@Query("select p from PolicyHolder p where p.agent=null")
+		List<PolicyHolder> viewIdlePolicyHolder();
 	
 }

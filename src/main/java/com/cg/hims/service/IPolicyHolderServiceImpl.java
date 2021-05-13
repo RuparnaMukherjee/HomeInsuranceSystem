@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.hims.entities.Agent;
 import com.cg.hims.entities.PolicyHolder;
+import com.cg.hims.exceptions.AgentNotFoundException;
 import com.cg.hims.exceptions.PolicyHolderNotFoundException;
 import com.cg.hims.repository.IAgentRepository;
 import com.cg.hims.repository.IPolicyHolderRepository;
@@ -53,7 +54,7 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
     	if(!holderdao.existsById(id))
 			throw new PolicyHolderNotFoundException("quote not found");
 		holderdao.deleteById(id);
-		return "Quote deleted successfully";
+		return "Policy Holder deleted successfully";
     }
     
     @Override
@@ -62,10 +63,15 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
     	return holderdao.findAll();
     	//return h_list;
     }
-    public List<Object> viewPolicyHolder(int id) {
+    public List<PolicyHolder> viewPolicyHolderByAgentId(int id) throws AgentNotFoundException {
 		// TODO Auto-generated method stub
+    	if(!agentDao.existsById(id))
+    		throw new AgentNotFoundException("agent not found");
     	Optional<Agent> agent=agentDao.findById(id);
 		return holderdao.findAllByAgent(agent);
 	}
+    public List<PolicyHolder> viewIdlePolicyHolder(){
+    	return holderdao.viewIdlePolicyHolder();
+    }
     
 }

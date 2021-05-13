@@ -8,9 +8,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.hims.entities.Agent;
 import com.cg.hims.entities.Policy;
+import com.cg.hims.exceptions.AgentNotFoundException;
 import com.cg.hims.exceptions.PolicyNotFoundException;
 import com.cg.hims.exceptions.QuoteNotFoundException;
+import com.cg.hims.repository.IAgentRepository;
 import com.cg.hims.repository.IPolicyRepository;
 
 @Service
@@ -19,6 +22,8 @@ public class IPolicyServiceImpl implements IPolicyService{
 	
 	@Autowired
 	IPolicyRepository policyDao;
+	@Autowired
+	IAgentRepository agentDao;
 
 	@Override
 	public Policy addPolicy(Policy policy) {
@@ -37,7 +42,7 @@ public class IPolicyServiceImpl implements IPolicyService{
 	}
 
 	@Override
-	public Optional<Policy> findPolicyById(String policyId) throws PolicyNotFoundException {
+	public Optional<Policy> findPolicyById(int policyId) throws PolicyNotFoundException {
 		// TODO Auto-generated method stub
 		if(!policyDao.existsById(policyId))
 			throw new PolicyNotFoundException("policy not found");
@@ -45,7 +50,7 @@ public class IPolicyServiceImpl implements IPolicyService{
 	}
 
 	@Override
-	public String removePolicy(String policyId) throws PolicyNotFoundException {
+	public String removePolicy(int policyId) throws PolicyNotFoundException {
 		// TODO Auto-generated method stub
 		if(!policyDao.existsById(policyId))
 			throw new PolicyNotFoundException("policy not found");
@@ -58,6 +63,13 @@ public class IPolicyServiceImpl implements IPolicyService{
 		// TODO Auto-generated method stub
 		List<Policy> policy=policyDao.findAll();
 		return policy;
+	}
+	public List<Policy> viewPolicyByAgentId(int id) throws AgentNotFoundException {
+		// TODO Auto-generated method stub
+    	if(!agentDao.existsById(id))
+    		throw new AgentNotFoundException("agent not found");
+    	Optional<Agent> agent=agentDao.findById(id);
+		return policyDao.findAllByAgent(agent);
 	}
 
 }

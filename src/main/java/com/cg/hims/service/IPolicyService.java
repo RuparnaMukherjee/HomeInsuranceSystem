@@ -12,9 +12,9 @@ public interface IPolicyService {
 
 	public Policy updatePolicy(Policy policy) throws PolicyNotFoundException;
 
-	public Optional<Policy> findPolicyById(String policyId) throws PolicyNotFoundException;
+	public Optional<Policy> findPolicyById(int policyId) throws PolicyNotFoundException;
 
-	public String removePolicy(String policyId) throws PolicyNotFoundException;
+	public String removePolicy(int policyId) throws PolicyNotFoundException;
 
 	public List<Policy> showAllPolicies();
 

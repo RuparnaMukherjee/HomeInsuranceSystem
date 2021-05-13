@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.hims.entities.Agent;
 import com.cg.hims.entities.PolicyHolder;
+import com.cg.hims.exceptions.AgentNotFoundException;
 import com.cg.hims.exceptions.PolicyHolderNotFoundException;
 import com.cg.hims.service.IPolicyHolderServiceImpl;
 
@@ -67,8 +68,8 @@ public class PolicyHolderManagementController {
 	}
 	
 	@GetMapping("/GetPolicyHolders/{id}")
-	public List<Object> getPolicyHolders(@PathVariable("id") int id){
-		return holderimpl.viewPolicyHolder(id);
+	public List<PolicyHolder> getPolicyHolders(@PathVariable("id") int id) throws AgentNotFoundException{
+		return holderimpl.viewPolicyHolderByAgentId(id);
 	}
 
 }

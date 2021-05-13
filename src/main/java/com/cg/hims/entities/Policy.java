@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 public class Policy {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private String policyId;
+	private int policyId;
 	private Date policyEffectiveDate;
 	private Date policyEndDate;
 	private int policyTerm;
@@ -26,10 +26,10 @@ public class Policy {
 	private Agent agent;
 	public Policy()
 	{}
-	public String getPolicyId() {
+	public int getPolicyId() {
 		return policyId;
 	}
-	public void setPolicyId(String policyId) {
+	public void setPolicyId(int policyId) {
 		this.policyId = policyId;
 	}
 	public Date getPolicyEffectiveDate() {

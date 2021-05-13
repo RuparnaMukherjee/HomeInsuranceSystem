@@ -28,14 +28,14 @@ public class PolicyHolder {
 	private String ssn;
 	private String emailId;
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="address_id")
+	@JoinColumn(name="address_id",insertable=true,updatable=true)
 	private HomeAddress address;
 	@OneToOne
-	@JoinColumn(name="policy_id")
-	@JsonIgnore
+	@JoinColumn(name="policy_id",insertable=false,updatable=false)
+	//@JsonIgnore
 	private Policy policy;
 	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="agent_id",insertable=false,updatable=true)
+	@JoinColumn(name="agent_id",insertable=false,updatable=false)
 	//@JsonIgnore
 	private Agent agent;
 	public PolicyHolder()

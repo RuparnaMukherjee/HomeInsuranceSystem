@@ -30,11 +30,13 @@ public class Agent {
 	@Pattern(regexp="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
 	private String email;
 	@Column(unique=true)
-	@Pattern(regexp="[0-9] {10}")
+	@Pattern(regexp="[0-9]{10}")
 	private String mobileNo;
 	@OneToMany(mappedBy="agent",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private Set<PolicyHolder> policyHoldersList=new HashSet<>();
 	@OneToMany(mappedBy="agent",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private List<Policy> policies;
 	public Agent() {
 		
