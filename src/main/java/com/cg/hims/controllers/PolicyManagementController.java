@@ -18,6 +18,8 @@ public class PolicyManagementController {
 
 	@Autowired
 	IPolicyServiceImpl policyImpl;
+	
+	//Show All policies 
 	@GetMapping("/ViewAllPolicies")
 	public ResponseEntity<List<Policy>> showAllPolicy(){
 		List<Policy> policy=policyImpl.showAllPolicies();
