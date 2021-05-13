@@ -18,30 +18,36 @@ public class IQuoteServiceImpl implements IQuoteService{
 
 	@Autowired
 	IQuoteRepository quoteDao;
+	
+	//Add quote or create Quote
 	@Override
-	public Quote addQuote(Quote quote) {
+	public Quote addQuote(Quote quote)       
+	{
 		// TODO Auto-generated method stub
-		quoteDao.save(quote);
+		quoteDao.save(quote);        
 		return quote;
 	}
-
+        
+	//Update Existing Quote 
 	@Override
 	public Quote updateQuote(Quote quote) throws QuoteNotFoundException {
 		// TODO Auto-generated method stub
-		if(!quoteDao.existsById(quote.getQuoteId()))
+		if(!quoteDao.existsById(quote.getQuoteId()))                   //If Quoteid doesn't exists then throws appropriate exception else save and return quote object
 			throw new QuoteNotFoundException("quote not found");
-		quoteDao.save(quote);
+		quoteDao.save(quote);          
 		return quote;
 	}
 
+	//Getting a quote by Id
 	@Override
 	public Optional<Quote> findQuoteById(int id) throws QuoteNotFoundException {
 		// TODO Auto-generated method stub
-		if(!quoteDao.existsById(id))
+		if(!quoteDao.existsById(id))        //
 			throw new QuoteNotFoundException("quote not found");
 		return quoteDao.findById(id);
 	}
 
+	//Remove any Existing Quote
 	@Override
 	public String removeQuote(int id) throws QuoteNotFoundException {
 		// TODO Auto-generated method stub
@@ -51,6 +57,7 @@ public class IQuoteServiceImpl implements IQuoteService{
 		return "Quote deleted successfully";
 	}
 
+	//View All Quotes 
 	@Override
 	public List<Quote> showAllQuotes() {
 		// TODO Auto-generated method stub
