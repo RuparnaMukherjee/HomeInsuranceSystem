@@ -21,20 +21,26 @@ public class UserManagementController {
 	@Autowired
 	IUserServiceImpl userImpl;
 	
+	//check for usercontrol
 	@GetMapping("/Check")
 	public String check() {
 		return "ok";
 	}
 	
+	//Adding new user to Database
 	@PostMapping("/addUser")
 	public UserTable addUser(@RequestBody UserTable user) {
 		return userImpl.addNewUser(user);
 	}
+	
+	//User-Login
 	@PostMapping("/Login")
 	public String login(@RequestParam String userName,@RequestParam String password) throws UserNotFoundException {
 		System.out.println(userName+","+password);
 		return userImpl.signIn(userName, password);
 	}
+	
+	//User-Logout
 	@GetMapping("/Logout")
 	public String logout(@RequestBody UserTable user) {
 		return userImpl.signOut(user);
