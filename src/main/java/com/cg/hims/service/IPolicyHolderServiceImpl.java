@@ -21,6 +21,7 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
     @Autowired
     IAgentRepository agentDao;
     
+//add new policyholder
     @Override
     public PolicyHolder addPolicyHolder(PolicyHolder policyHolder)
     {
@@ -28,6 +29,7 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
     	return policyHolder;
     }
     
+    //update policy holder by id
     @Override
     public PolicyHolder updatePolicyHolder(PolicyHolder policyHolder) throws PolicyHolderNotFoundException
     {
@@ -39,6 +41,7 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
     	
     }
     
+  //Retrieve policyholder by id	
     @Override
     public Optional<PolicyHolder> findPolicyHolderById(int id) throws PolicyHolderNotFoundException
     {
@@ -47,6 +50,7 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
     	return holderdao.findById(id);
     }
     
+   //Delete a policyholder	
     @Override
     public String removePolicyHolder(int id) throws PolicyHolderNotFoundException
     {
@@ -56,12 +60,16 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
 		return "Quote deleted successfully";
     }
     
+	
+    //Show all policyholders	
     @Override
     public List<PolicyHolder> showAllPolicyHolders()
     {
     	return holderdao.findAll();
     	//return h_list;
     }
+	
+	//View policyholder by id
     public List<Object> viewPolicyHolder(int id) {
 		// TODO Auto-generated method stub
     	Optional<Agent> agent=agentDao.findById(id);
