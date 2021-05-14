@@ -14,18 +14,12 @@ import com.cg.hims.exceptions.PolicyHolderNotFoundException;
 @Repository
 public interface IPolicyHolderRepository extends JpaRepository<PolicyHolder,Integer>{
 
-	//public PolicyHolder addPolicyHolder(PolicyHolder policyHolder);
-
-	//public PolicyHolder updatePolicyHolder(PolicyHolder policyHolder) throws PolicyHolderNotFoundException;
-
-	//public PolicyHolder findPolicyHolderById(int id) throws PolicyHolderNotFoundException;
-
-	//public PolicyHolder removePolicyHolder(int id) throws PolicyHolderNotFoundException;
-
-	//public  void makePayment();
 		@Query("Select a from PolicyHolder a where a.agent=?1")
 	    List<PolicyHolder> findAllByAgent(Optional<Agent> agent);
+		
 		@Query("select p from PolicyHolder p where p.agent=null")
 		List<PolicyHolder> viewIdlePolicyHolder();
+		
+		Optional<PolicyHolder> findByEmailId(String email);
 	
 }

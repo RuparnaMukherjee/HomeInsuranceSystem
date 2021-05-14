@@ -10,7 +10,6 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class Admin {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int adminId;
 	private String adminName;
 	@Column(unique=true)

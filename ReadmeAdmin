@@ -1,4 +1,4 @@
-/*Policy holder Management*/
+*Policy holder Management*/
 
 ***********************************************************************************************
 
@@ -129,6 +129,3 @@ Create Policy: http://localhost:8081/AdminDashboard/CreatePolicy
 	  }
 
 Delete Policy:http://localhost:08081/AdminDashboard/DeletePolicy/{id}
- 
-
-

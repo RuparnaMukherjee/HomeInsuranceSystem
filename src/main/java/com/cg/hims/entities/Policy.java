@@ -15,7 +15,6 @@ import javax.persistence.TemporalType;
 @Entity
 public class Policy {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int policyId;
 	private Date policyEffectiveDate;
 	private Date policyEndDate;

@@ -12,7 +12,6 @@ public class Quote {
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int quoteId;
 	private String premiumType;
 	private double premium;

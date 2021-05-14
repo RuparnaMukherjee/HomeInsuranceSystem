@@ -1,11 +1,15 @@
 package com.cg.hims.repository;
 
-import com.cg.hims.entities.Property;
+import java.util.List;
+import java.util.Optional;
 
-public interface IPropertyRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-	public Property addProperty(Property property);
+import com.cg.hims.entities.*;
 
-	public Property viewProperty();
-
+public interface IPropertyRepository extends JpaRepository<Property,Integer>{
+	
+	@Query("Select x from Property x where x=(Select q.property from Quote q where q.policy=(Select p from Policy p where p.agent=?1))")
+    List<Property> findAllByAgent(Optional<Agent> agent);
 }

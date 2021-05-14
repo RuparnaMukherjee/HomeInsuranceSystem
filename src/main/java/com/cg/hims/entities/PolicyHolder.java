@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class PolicyHolder {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int policyHolderId;
 	private String policyHolderName;
 	private String policyName;
@@ -31,13 +30,14 @@ public class PolicyHolder {
 	@JoinColumn(name="address_id",insertable=true,updatable=true)
 	private HomeAddress address;
 	@OneToOne
-	@JoinColumn(name="policy_id",insertable=false,updatable=false)
-	//@JsonIgnore
+	@JoinColumn(name="policy_id")
 	private Policy policy;
-	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="agent_id",insertable=false,updatable=false)
-	//@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="agent_id")
 	private Agent agent;
+	@OneToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="property_id",referencedColumnName="property_id")
+	private Property property=new Property();
 	public PolicyHolder()
 	{}
 	public int getPolicyHolderId() {
@@ -123,6 +123,15 @@ public class PolicyHolder {
 	}
 	public void setAgent(Agent agent) {
 		this.agent = agent;
+	}
+	public Property getProperty() {
+		return property;
+	}
+	public void setProperty(Property property) {
+		this.property = property;
+	}
+	public void setRetired(boolean isRetired) {
+		this.isRetired = isRetired;
 	}
 	
 }

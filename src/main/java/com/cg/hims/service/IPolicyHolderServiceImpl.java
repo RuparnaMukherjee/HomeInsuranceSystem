@@ -48,6 +48,13 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
     	return holderdao.findById(id);
     }
     
+    public Optional<PolicyHolder> findPolicyHolderByEmailId(String email) throws PolicyHolderNotFoundException
+    {
+    	Optional<PolicyHolder> policyHolder=holderdao.findByEmailId(email);
+    	if(policyHolder==null)
+    		throw new PolicyHolderNotFoundException("PolicyHolder not found");
+    	return policyHolder;
+    }
     @Override
     public String removePolicyHolder(int id) throws PolicyHolderNotFoundException
     {

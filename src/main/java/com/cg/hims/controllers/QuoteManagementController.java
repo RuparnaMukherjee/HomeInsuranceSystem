@@ -39,7 +39,7 @@ public class QuoteManagementController {
 	//Create new quote in database
 	@PostMapping("/CreateQuote")
 	public ResponseEntity<Quote> addQuote(@RequestBody Quote quote) {
-		if(quote.getQuoteId()==0)
+		if(quote==null)
 			return new ResponseEntity("Quote Empty",HttpStatus.NOT_FOUND);
 		System.out.println("Quote Created");
 		Quote quote1= quoteImpl.addQuote(quote);
