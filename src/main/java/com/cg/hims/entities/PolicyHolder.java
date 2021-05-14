@@ -35,9 +35,7 @@ public class PolicyHolder {
 	@ManyToOne
 	@JoinColumn(name="agent_id")
 	private Agent agent;
-	@OneToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(name="property_id",referencedColumnName="property_id")
-	private Property property=new Property();
+	
 	public PolicyHolder()
 	{}
 	public int getPolicyHolderId() {
@@ -123,12 +121,6 @@ public class PolicyHolder {
 	}
 	public void setAgent(Agent agent) {
 		this.agent = agent;
-	}
-	public Property getProperty() {
-		return property;
-	}
-	public void setProperty(Property property) {
-		this.property = property;
 	}
 	public void setRetired(boolean isRetired) {
 		this.isRetired = isRetired;
