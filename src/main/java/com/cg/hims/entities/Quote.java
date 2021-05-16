@@ -1,9 +1,18 @@
 package com.cg.hims.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Quote {
 	
 	
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int quoteId;
 	private String premiumType;
 	private double premium;
@@ -13,6 +22,12 @@ public class Quote {
 	private double additionalLivingExpense;
 	private double medicalExpense;
 	private double deductibleAmount;
+	@OneToOne
+	@JoinColumn(name="policy_id")
+	private Policy policy;
+	@OneToOne
+	@JoinColumn(name="property_id")
+	private Property property;
 	public Quote()
 	{}
 	public int getQuoteId() {
@@ -69,8 +84,17 @@ public class Quote {
 	public void setDeductibleAmount(double deductibleAmount) {
 		this.deductibleAmount = deductibleAmount;
 	}
+	public Policy getPolicy() {
+		return policy;
+	}
+	public void setPolicy(Policy policy) {
+		this.policy = policy;
+	}
+	public Property getProperty() {
+		return property;
+	}
+	public void setProperty(Property property) {
+		this.property = property;
+	}
 	
-	
-	
-
 }

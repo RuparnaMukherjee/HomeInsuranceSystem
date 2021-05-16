@@ -1,5 +1,8 @@
 package com.cg.hims.entities;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 public class Property {
 
 	
@@ -13,6 +16,11 @@ public class Property {
 	private int fullBathCount;
 	private int halfBathCount;
 	private boolean hasSwimmingPool;
+	
+	@OneToOne
+	@JoinColumn(name= "quote_id")
+	private Quote quote;
+	
 	public Property()
 	{}
 	public int getQuoteId() {
@@ -75,7 +83,12 @@ public class Property {
 	public void setHasSwimmingPool(boolean hasSwimmingPool) {
 		this.hasSwimmingPool = hasSwimmingPool;
 	}
-	
+	public Quote getQuote() {
+		return quote;
+	}
+	public void setQuoteId(Quote quote) {
+		this.quote = quote;
+	}
 
 	
 	

@@ -13,9 +13,9 @@ public interface IPolicyService {
 
 	public Policy updatePolicy(Policy policy) throws PolicyNotFoundException;
 
-	public Policy findPolicyById(int policyId) throws PolicyNotFoundException;
+	public Optional<Policy> findPolicyById(int policyId) throws PolicyNotFoundException;
 
-	public Policy removePolicy(int policyId) throws PolicyNotFoundException;
+	public String removePolicy(int policyId) throws PolicyNotFoundException;
 
 	public List<Policy> showAllPolicies();
 

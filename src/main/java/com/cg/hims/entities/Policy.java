@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 public class Policy implements Serializable {
 	
 	@Id
-	private String policyId;
+	private int policyId;
 	private String policyEffectiveDate;
 	private String policyEndDate;
 	private int policyTerm;
@@ -22,6 +22,17 @@ public class Policy implements Serializable {
 	@JoinColumn(name= "agent_id")
 	private Agent agent;
 	
+	public Policy(int policyId, String policyEffectiveDate, String policyEndDate, int policyTerm, String policyStatus) {
+		super();
+		this.policyId = policyId;
+		this.policyEffectiveDate = policyEffectiveDate;
+		this.policyEndDate = policyEndDate;
+		this.policyTerm = policyTerm;
+		this.policyStatus = policyStatus;
+		this.agent = agent;
+		this.quote = quote;
+		this.policyholder = policyholder;
+	}
 	@OneToOne
 	@JoinColumn(name= "quote_id")
 	private Quote quote;
@@ -32,10 +43,10 @@ public class Policy implements Serializable {
 	
 	public Policy()
 	{}
-	public String getPolicyId() {
+	public int getPolicyId() {
 		return policyId;
 	}
-	public void setPolicyId(String policyId) {
+	public void setPolicyId(int policyId) {
 		this.policyId = policyId;
 	}
 	public String getPolicyEffectiveDate() {
