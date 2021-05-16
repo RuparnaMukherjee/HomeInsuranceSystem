@@ -28,7 +28,24 @@ public class Quote {
 	@JoinColumn(name="property_id")
 	private Property property;
 	public Quote()
-	{}
+	{}	
+	public Quote(int quoteId, String premiumType, double premium, double dwellingCoverage,
+			double detachedStructureCoverage, double personalPropertyCoverage, double additionalLivingExpense,
+			double medicalExpense, double deductibleAmount, Policy policy, Property property) {
+		super();
+		this.quoteId = quoteId;
+		this.premiumType = premiumType;
+		this.premium = premium;
+		this.dwellingCoverage = dwellingCoverage;
+		this.detachedStructureCoverage = detachedStructureCoverage;
+		this.personalPropertyCoverage = personalPropertyCoverage;
+		this.additionalLivingExpense = additionalLivingExpense;
+		this.medicalExpense = medicalExpense;
+		this.deductibleAmount = deductibleAmount;
+		this.policy = policy;
+		this.property = property;
+	}
+
 	public int getQuoteId() {
 		return quoteId;
 	}

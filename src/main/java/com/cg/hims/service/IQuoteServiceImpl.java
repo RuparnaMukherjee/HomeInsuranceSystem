@@ -37,6 +37,7 @@ public class IQuoteServiceImpl implements IQuoteService{
 	@Override
 	public Optional<Quote> findQuoteById(int id) throws QuoteNotFoundException {
 		// TODO Auto-generated method stub
+		Optional<Quote> quote=quoteDao.findById(id);
 		if(!quoteDao.existsById(id))
 			throw new QuoteNotFoundException("quote not found");
 		return quoteDao.findById(id);
