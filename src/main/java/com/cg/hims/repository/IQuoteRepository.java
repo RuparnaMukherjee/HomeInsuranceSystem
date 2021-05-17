@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.cg.hims.entities.Quote;
 import com.cg.hims.exceptions.QuoteNotFoundException;
 
+/* Repository for Quote */
+
 @Repository
 public interface IQuoteRepository extends JpaRepository<Quote, Integer> {
 

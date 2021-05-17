@@ -64,11 +64,5 @@ public class IAgentServiceImpl implements IAgentService{
 		return temp;
 	}
 
-	//@Override
-//	public List<PolicyHolder> viewPolicyHolder() {
-//		// TODO Auto-generated method stub
-//		return agent_repo.viewPolicyHolder();
-//	}
-
 	
 }

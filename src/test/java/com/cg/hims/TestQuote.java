@@ -33,14 +33,26 @@ import com.cg.hims.repository.IQuoteRepository;
 import com.cg.hims.service.IQuoteService;
 import com.cg.hims.service.IQuoteServiceImpl;
 
+/*
+ * Test for Quote Service Layer
+ * Author:Ruparna Mukherjee
+ * date created:09/05/2021
+ * Version:1.0
+ */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestQuote {
 	
 	@InjectMocks
-	private IQuoteServiceImpl quoteService;
+	private IQuoteServiceImpl quoteService;   //Quote Repository mocks injected in Quote service layer
 	@Mock
-	private IQuoteRepository quoteRepository;
+	private IQuoteRepository quoteRepository;  //Quote Repository to be mocked
+	
+	/************************************************************************************
+	 * Method: testAddQuote
+	 * Description: It is used to test whether the service layer is successfuly adding quote
+	 ************************************************************************************/
 	
 	@Test
 	public void testAddQuote() {
@@ -58,6 +70,11 @@ public class TestQuote {
 		Mockito.when(quoteRepository.save(quote)).thenReturn(quote);
 		assertEquals(quote,quoteService.addQuote(quote));
 	}
+	
+	/************************************************************************************
+	 * Method: testListQuote
+	 * Description: It is used to test whether the service layer is successfuly retrieving all the quote records from repository
+	 ************************************************************************************/
 	
 	@Test
 	public void testListQuote() {
@@ -90,6 +107,11 @@ public class TestQuote {
 		assertEquals(2,quoteService.showAllQuotes().size());
 	}
 	
+	/************************************************************************************
+	 * Method: testPositiveViewQuoteById
+	 * Description: It is used to test whether the service layer is successfully retrieving the specific quote by id 
+	 ************************************************************************************/
+	
 	@Test
 	public void testPositiveViewQuoteById() throws QuoteNotFoundException {
 		Quote quote=new Quote();
@@ -99,6 +121,11 @@ public class TestQuote {
 		
 		assertEquals(quote,quoteService.findQuoteById(1).get());
 	}
+	
+	/************************************************************************************
+	 * Method: testNegativeViewQuoteById
+	 * Description: It is used to test whether the service layer is successfully throwing error when not finding quote by id 
+	 ************************************************************************************/
 	
 	@Test
 	public void testNegativeViewQuoteById() throws QuoteNotFoundException {
@@ -110,6 +137,11 @@ public class TestQuote {
 		verify(quoteRepository,never()).findById(1);
 		Assertions.assertThrows(QuoteNotFoundException.class, ex);
 	}
+	
+	/************************************************************************************
+	 * Method: testNegativeEditQuote
+	 * Description: It is used to test whether the service layer is successfully throwing error when not finding quote by id 
+	 ************************************************************************************/
 	
 	@Test 
 	public void testNegativeEditQuote()throws QuoteNotFoundException {
@@ -130,6 +162,11 @@ public class TestQuote {
 		Assertions.assertThrows(QuoteNotFoundException.class,ex);
 	}
 	
+	/************************************************************************************
+	 * Method: testPositiveEditQuote
+	 * Description: It is used to test whether the service layer is successfully editing quote when finding quote by id 
+	 ************************************************************************************/
+	
 	@Test
 	public void testPositiveEditQuote()throws QuoteNotFoundException{
 		Property property=new Property();
@@ -148,6 +185,11 @@ public class TestQuote {
 		assertEquals(quote,quoteService.updateQuote(quote));
 	}
 	
+	/************************************************************************************
+	 * Method: testPositiveDelete
+	 * Description: It is used to test whether the service layer is successfully deleting when finding quote by id 
+	 ************************************************************************************/
+	
 	@Test 
 	public void testPositiveDelete()throws QuoteNotFoundException{
 		Quote quote=new Quote();
@@ -156,6 +198,11 @@ public class TestQuote {
 			quoteService.removeQuote(1);
 		verify(quoteRepository,Mockito.atLeastOnce()).deleteById(1);
 	}
+	
+	/************************************************************************************
+	 * Method: testNegativeDelete
+	 * Description: It is used to test whether the service layer is successfully throwing error when not finding quote by id 
+	 ************************************************************************************/
 	
 	@Test 
 	public void testNegativeDelete()throws QuoteNotFoundException{

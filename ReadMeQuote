@@ -1,0 +1,24 @@
+Quote Checking:-
+http://localhost:8081/quote/CreateQuote
+
+	{
+	      "quoteId":1,
+	     "premiumType":"quater",
+		"premium":2,
+		"dwellingCoverage":1000,
+		"detachedStructureCoverage":1500,
+		"personalPropertyCoverage":2000,
+		"additionalLivingExpense":1500,
+		"medicalExpense":1500,
+		"deductibleAmount":2000,
+	      "policy":{
+	          "policyId":1
+	      },
+	      "property":{
+	        "propertyId":1
+	      }
+	  }
+http://localhost:8081/quote/ViewAllQuotes
+http://localhost:8081/quote/ViewQuoteById/{id}
+http://localhost:8081/quote/UpdateQuote
+http://localhost:8081/quote/DeleteQuote/{id}

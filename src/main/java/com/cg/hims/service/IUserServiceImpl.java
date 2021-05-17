@@ -15,22 +15,38 @@ import com.cg.hims.exceptions.UserNotFoundException;
 import com.cg.hims.repository.IUserRepository;
 
 
+/*Author:Jeeta Makhal
+ * Version: 1.0
+ * Date:15/05/2021
+ * Description: This is User Service Implementation
+ */
 
-@Service
-@Transactional
+@Service 
+@Transactional 
 public class IUserServiceImpl implements IUserService {
+	
 	
 	@Autowired
 	IUserRepository userDao;
-	@PersistenceContext
-    private EntityManager entityManager;
 
-	@Override
+	@Override//
 	public UserTable addNewUser(UserTable user) {
 		// TODO Auto-generated method stub
 		userDao.save(user);
 		return user;
 	}
+	
+	/* Method: User service implementation implements User service
+	 * Description: It helps to implement the business logic..
+	 * @Service: It is a stereotype for the service layer and are used to write business logic in a different layer, separated from @RestController class file..
+	 * @Transactional: It itself defines the scope of a single database.
+	 * @Autowired: It enables to inject object dependency implicitly.
+	 * @Override: It indicates that the child class method is over-writing its base class method.
+    
+    * Created By-Jeeta Makhal
+    * Created Date - 16-05-2021 
+    */
+	
 
 	@Override
 	public String signIn(String userName,String password) throws UserNotFoundException {
@@ -43,4 +59,14 @@ public class IUserServiceImpl implements IUserService {
 		return "Logged In SuccessFully";
 	}
 
+	/* Method: Business logic 
+	 * Description: Business logic when user tries to login.
+	 * @Override: It indicates that the child class method is over-writing its base class method.
+    
+    * Created By-Jeeta Makhal
+    * Created Date - 16-05-2021 
+    */
+	
+
+	
 }

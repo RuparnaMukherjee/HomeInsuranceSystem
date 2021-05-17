@@ -23,12 +23,20 @@ import com.cg.hims.entities.PolicyHolder;
 import com.cg.hims.exceptions.AgentNotFoundException;
 import com.cg.hims.service.IAgentServiceImpl;
 
+/*Controller Class for Agent Management
+Author : Anudeep Biswas
+Date Created : 9/5/2021
+*/
+
+
 @RestController
 @RequestMapping("/agentManagement")
 public class AgentManagementController{
+	
 	@Autowired
 	 IAgentServiceImpl serviceobj;
 
+/***************************************************************************************/
 	// Create Agent
 	@PostMapping("/agentCreation")
 	public ResponseEntity<Agent> addAgent(@RequestBody Agent agent) {
@@ -39,6 +47,7 @@ public class AgentManagementController{
 		return new ResponseEntity<Agent>(agentImpl,HttpStatus.OK);
 	}
 
+/***************************************************************************************/
 	// Get Particular Agent Data
 	@GetMapping("/findAgent/{id}")
 	public ResponseEntity<Optional<Agent>> findAgentById(@PathVariable("id") int id) throws AgentNotFoundException {
@@ -48,6 +57,7 @@ public class AgentManagementController{
 		return new ResponseEntity(findagent,HttpStatus.OK);
 	}
 
+/***************************************************************************************/
 	// All Agents List
 	@GetMapping("/ViewAllAgents")
 	public ResponseEntity<List<Agent>> viewAllAgents() {
@@ -56,7 +66,8 @@ public class AgentManagementController{
 			return new ResponseEntity("No Agents Found",HttpStatus.NOT_FOUND);
 		return new ResponseEntity(agentImpl,HttpStatus.OK);
 	}
-
+	
+/***************************************************************************************/
 	// Updating Agent Data
 	@PutMapping("/agentUpdate")
 	public ResponseEntity<Agent> UpdateEmployee(@RequestBody Agent agent) throws AgentNotFoundException {
@@ -64,7 +75,8 @@ public class AgentManagementController{
 			return new ResponseEntity("Enter Proper Agent Details",HttpStatus.NOT_FOUND);
 		return new ResponseEntity(serviceobj.updateAgent(agent),HttpStatus.OK);
 	}
-
+	
+/***************************************************************************************/
 	// Delete Agent
 	@DeleteMapping("/agentRemove/{id}")
 	public String removeAgent(@PathVariable("id") int id) throws AgentNotFoundException {
