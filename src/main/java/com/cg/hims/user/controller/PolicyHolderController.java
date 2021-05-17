@@ -43,24 +43,10 @@ public class PolicyHolderController {
 		return new ResponseEntity <PolicyHolder>(holder ,HttpStatus.OK);
 	}
 
-	/*
-	 * @GetMapping("/ViewAllPolicyHolderdb") public
-	 * ResponseEntity<List<PolicyHolder>> showAllpolicyHolders() {
-	 * List<PolicyHolder> h_list=holderimpl.showAllPolicyHolders();
-	 * if(h_list.isEmpty()) return new
-	 * ResponseEntity("PolicyHolder not found",HttpStatus.NOT_FOUND); return new
-	 * ResponseEntity<List<PolicyHolder>>(h_list,HttpStatus.OK); }
-	 */
-	//Eta find by email krte hbe pore kore dish..ei comment ta delete kre dish
 	@GetMapping("/ViewPolicyHolderByEmailId/{id}")
 	public Optional<PolicyHolder> findPolicyHolderById(@PathVariable("id") String id) throws PolicyHolderNotFoundException {
 		return holderimpl.findPolicyHolderByEmailId(id);
 	}
-	/*
-	 * @GetMapping("/findAgent/{id}") public Optional<Agent>
-	 * findAgentById(@PathVariable("id") int id) throws AgentNotFoundException {
-	 * return serviceobj.findAgentById(id); }
-	 */
 	@GetMapping("/ViewAllPolicies")
 	public ResponseEntity<List<Policy>> showAllPolicy(){
 		List<Policy> policy=policyImpl.showAllPolicies();

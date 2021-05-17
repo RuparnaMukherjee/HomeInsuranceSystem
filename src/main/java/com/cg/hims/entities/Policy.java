@@ -25,6 +25,23 @@ public class Policy {
 	private Agent agent;
 	public Policy()
 	{}
+	
+	public Policy(int policyId) {
+		super();
+		this.policyId = policyId;
+	}
+
+	public Policy(int policyId, Date policyEffectiveDate, Date policyEndDate, int policyTerm, String policyStatus,
+			Agent agent) {
+		super();
+		this.policyId = policyId;
+		this.policyEffectiveDate = policyEffectiveDate;
+		this.policyEndDate = policyEndDate;
+		this.policyTerm = policyTerm;
+		this.policyStatus = policyStatus;
+		this.agent = agent;
+	}
+
 	public int getPolicyId() {
 		return policyId;
 	}

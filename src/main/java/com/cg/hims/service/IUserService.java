@@ -7,6 +7,4 @@ public interface IUserService {
 	public UserTable addNewUser(UserTable user);
 
 	public String signIn(String userName,String password)throws UserNotFoundException;
-
-	public String signOut(UserTable user);
 }

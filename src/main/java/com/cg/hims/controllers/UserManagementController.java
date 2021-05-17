@@ -14,10 +14,15 @@ import com.cg.hims.entities.UserTable;
 import com.cg.hims.exceptions.UserNotFoundException;
 import com.cg.hims.service.IUserServiceImpl;
 
+import javax.servlet.http.HttpSession;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 @RestController
 @RequestMapping("/Authenticate")
 public class UserManagementController {
-	
+	@Autowired
+	HttpSession session;
 	@Autowired
 	IUserServiceImpl userImpl;
 	
@@ -36,7 +41,8 @@ public class UserManagementController {
 		return userImpl.signIn(userName, password);
 	}
 	@GetMapping("/Logout")
-	public String logout(@RequestBody UserTable user) {
-		return userImpl.signOut(user);
+	public ResponseEntity<String> logout(@RequestBody UserTable user) {
+		session.invalidate();
+		return new ResponseEntity<String>("logged out",HttpStatus.OK);
 	}
 }

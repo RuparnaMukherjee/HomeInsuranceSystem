@@ -14,6 +14,8 @@ import com.cg.hims.entities.UserTable;
 import com.cg.hims.exceptions.UserNotFoundException;
 import com.cg.hims.repository.IUserRepository;
 
+
+
 @Service
 @Transactional
 public class IUserServiceImpl implements IUserService {
@@ -39,13 +41,6 @@ public class IUserServiceImpl implements IUserService {
 		if(!user1.getPassword().equals(password))
 			return "Password didnt match";
 		return "Logged In SuccessFully";
-	}
-
-	@Override
-	public String signOut(UserTable user) {
-		// TODO Auto-generated method stub
-		entityManager.detach(user);
-		return "Logged Out SuccessFully";
 	}
 
 }

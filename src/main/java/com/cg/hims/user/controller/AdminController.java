@@ -29,200 +29,191 @@ import com.cg.hims.service.IPolicyServiceImpl;
 /*
  * Admin Controller
  * Author:Ruparna Mukherjee
+ * Version:0.1
  * Created at:13/05/2021
  */
 
 @RestController
 @RequestMapping("/AdminDashboard")
 public class AdminController {
-	
-@GetMapping("/check")
-public String check() {
-	return "ok";
-}
 
-/**************************************************************************************/
-/*
- * Service Objects Autowired Here
- */
+	@GetMapping("/check")
+	public String check() {
+		return "ok";
+	}
+
+	/**************************************************************************************/
+	/*
+	 * Service Objects Autowired Here
+	 */
 	@Autowired
 	IPolicyHolderServiceImpl holderImpl;
 	@Autowired
-	 IAgentServiceImpl agentImpl;
+	IAgentServiceImpl agentImpl;
 	@Autowired
 	IPolicyServiceImpl policyImpl;
-/**************************************************************************************/
-/*
- * Policy Holder Management
- */
-	//Create policy holder
+
+	/**************************************************************************************/
+	/*
+	 * Policy Holder Management
+	 */
+	// Create policy holder
 	@PostMapping("/CreatePolicyHolder")
-	public ResponseEntity<PolicyHolder> createPolicyHolder(@RequestBody PolicyHolder policyHolder)
-	{
-		if(Objects.isNull(policyHolder))
-		{
-			return new ResponseEntity("No Policy Holder Found",HttpStatus.NOT_FOUND);
+	public ResponseEntity<PolicyHolder> createPolicyHolder(@RequestBody PolicyHolder policyHolder) {
+		if (Objects.isNull(policyHolder)) {
+			return new ResponseEntity("No Policy Holder Found", HttpStatus.NOT_FOUND);
 		}
-		PolicyHolder holder1= holderImpl.addPolicyHolder(policyHolder);
+		PolicyHolder holder1 = holderImpl.addPolicyHolder(policyHolder);
 		System.out.println("policy Holder added");
-		return new ResponseEntity <PolicyHolder>(policyHolder ,HttpStatus.OK);
+		return new ResponseEntity<PolicyHolder>(policyHolder, HttpStatus.OK);
 	}
-	
-	//View all policy holders in database
+
+	// View all policy holders in database
 	@GetMapping("/ViewAllPolicyHolders")
-	public ResponseEntity<List<PolicyHolder>> viewAllPolicyHolders()
-	{
-		List<PolicyHolder> h_list=holderImpl.showAllPolicyHolders();
-		if(h_list.isEmpty())
-		{
-			return new ResponseEntity("PolicyHolder not found",HttpStatus.NOT_FOUND);
+	public ResponseEntity<List<PolicyHolder>> viewAllPolicyHolders() {
+		List<PolicyHolder> h_list = holderImpl.showAllPolicyHolders();
+		if (h_list.isEmpty()) {
+			return new ResponseEntity("PolicyHolder not found", HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<PolicyHolder>>(h_list,HttpStatus.OK);
+		return new ResponseEntity<List<PolicyHolder>>(h_list, HttpStatus.OK);
 	}
-	
-	//View policy holders without agent
+
+	// View policy holders without agent
 	@GetMapping("/ViewIdlePolicyHolders")
-	public ResponseEntity<List<PolicyHolder>> viewIdlePolicyHolders()
-	{
-		List<PolicyHolder> h_list=holderImpl.viewIdlePolicyHolder();
-		if(h_list.isEmpty())
-		{
-			return new ResponseEntity("No policy holder present",HttpStatus.NOT_FOUND);
+	public ResponseEntity<List<PolicyHolder>> viewIdlePolicyHolders() {
+		List<PolicyHolder> h_list = holderImpl.viewIdlePolicyHolder();
+		if (h_list.isEmpty()) {
+			return new ResponseEntity("No policy holder present", HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<PolicyHolder>>(h_list,HttpStatus.OK); 
+		return new ResponseEntity<List<PolicyHolder>>(h_list, HttpStatus.OK);
 	}
-		
-	//View Policy Holder by policy holder id
+
+	// View Policy Holder by policy holder id
 	@GetMapping("/ViewPolicyHolderById/{id}")
-	public Optional<PolicyHolder> viewPolicyHolderById(@PathVariable("id") int id) throws PolicyHolderNotFoundException
-	{
+	public Optional<PolicyHolder> viewPolicyHolderById(@PathVariable("id") int id)
+			throws PolicyHolderNotFoundException {
 		return holderImpl.findPolicyHolderById(id);
 	}
-	
-	//Update policyHolders
+
+	// Update policyHolders
 	@PutMapping("/UpdatePolicyHolder")
-	public ResponseEntity<PolicyHolder> updatePolicyHolder(@RequestBody PolicyHolder policyHolder) throws PolicyHolderNotFoundException {
-		if(policyHolder==null)
-			return new ResponseEntity("enter the Policy Holder to be updated",HttpStatus.NOT_FOUND);
-		return new ResponseEntity<PolicyHolder>(holderImpl.updatePolicyHolder(policyHolder),HttpStatus.OK);
+	public ResponseEntity<PolicyHolder> updatePolicyHolder(@RequestBody PolicyHolder policyHolder)
+			throws PolicyHolderNotFoundException {
+		if (policyHolder == null)
+			return new ResponseEntity("enter the Policy Holder to be updated", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<PolicyHolder>(holderImpl.updatePolicyHolder(policyHolder), HttpStatus.OK);
 	}
-	
-	//Delete policy holders
+
+	// Delete policy holders
 	@DeleteMapping("/DeletePolicyHolder/{id}")
 	public String deletePolicyHolder(@PathVariable("id") int id) throws PolicyHolderNotFoundException {
 		return holderImpl.removePolicyHolder(id);
 	}
-/**************************************************************************************/
-	
-/*
- * Agent Management
- */
-	//Create new Agent
+
+	/**************************************************************************************/
+
+	/*
+	 * Agent Management
+	 */
+	// Create new Agent
 	@PostMapping("/CreateAgent")
 	public ResponseEntity<Agent> addAgent(@RequestBody Agent agent) {
-		if(Objects.isNull(agent))
-		{
-			return new ResponseEntity("No Agent Found",HttpStatus.NOT_FOUND);
+		if (Objects.isNull(agent)) {
+			return new ResponseEntity("No Agent Found", HttpStatus.NOT_FOUND);
 		}
-		Agent agent1= agentImpl.addAgent(agent);
+		Agent agent1 = agentImpl.addAgent(agent);
 		System.out.println("Agent added");
-		return new ResponseEntity<Agent>(agent ,HttpStatus.OK);
+		return new ResponseEntity<Agent>(agent, HttpStatus.OK);
 	}
-	
-	//View all agents
+
+	// View all agents
 	@GetMapping("/ViewAllAgents")
-	public ResponseEntity<List<Agent>> viewAllAgents(){
-		List<Agent> agentList=agentImpl.viewAllAgents();
-		if(agentList.isEmpty())
-		{
-			return new ResponseEntity("No policy holder present",HttpStatus.NOT_FOUND);
+	public ResponseEntity<List<Agent>> viewAllAgents() {
+		List<Agent> agentList = agentImpl.viewAllAgents();
+		if (agentList.isEmpty()) {
+			return new ResponseEntity("No policy holder present", HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<Agent>>(agentList,HttpStatus.OK); 
+		return new ResponseEntity<List<Agent>>(agentList, HttpStatus.OK);
 	}
-	
-	//View agent by id
+
+	// View agent by id
 	@GetMapping("/ViewAgentById/{id}")
 	public Optional<Agent> viewAgentById(@PathVariable("id") int id) throws AgentNotFoundException {
 		return agentImpl.findAgentById(id);
 	}
-	
-	//View policy holders under specific agent
+
+	// View policy holders under specific agent
 	@GetMapping("/ViewPolicyHoldersByAgentId/{id}")
-	public ResponseEntity<List<PolicyHolder>> viewAssignedPolicyHolders(@PathVariable("id") int id) throws AgentNotFoundException
-	{
-		List<PolicyHolder> holderList=holderImpl.viewPolicyHolderByAgentId(id);
-		if(holderList.isEmpty())
-		{
-			return new ResponseEntity("No policy holder present under this agent",HttpStatus.NOT_FOUND);
+	public ResponseEntity<List<PolicyHolder>> viewAssignedPolicyHolders(@PathVariable("id") int id)
+			throws AgentNotFoundException {
+		List<PolicyHolder> holderList = holderImpl.viewPolicyHolderByAgentId(id);
+		if (holderList.isEmpty()) {
+			return new ResponseEntity("No policy holder present under this agent", HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<PolicyHolder>>(holderList,HttpStatus.OK); 
+		return new ResponseEntity<List<PolicyHolder>>(holderList, HttpStatus.OK);
 	}
-	
-	//Update agent details
+
+	// Update agent details
 	@PutMapping("/UpdateAgent")
 	public ResponseEntity<Agent> updateAgent(@RequestBody Agent agent) throws AgentNotFoundException {
-		if(agent==null)
-			return new ResponseEntity("Agent not found to be updated",HttpStatus.NOT_FOUND);
-		return new ResponseEntity<Agent>(agentImpl.updateAgent(agent),HttpStatus.OK);
+		if (agent == null)
+			return new ResponseEntity("Agent not found to be updated", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Agent>(agentImpl.updateAgent(agent), HttpStatus.OK);
 	}
-	
-	//Delete agent
+
+	// Delete agent
 	@DeleteMapping("/DeleteAgentById/{id}")
 	public String deleteAgentById(@PathVariable("id") int id) throws AgentNotFoundException {
 		return agentImpl.removeAgent(id);
 	}
 
-/**************************************************************************************/
-/*
- * Policy Management
- */
+	/**************************************************************************************/
+	/*
+	 * Policy Management
+	 */
 
-	//Create a Policy
-	@PostMapping("/CreatePolicy") 
+	// Create a Policy
+	@PostMapping("/CreatePolicy")
 	public ResponseEntity<Policy> addPolicy(@RequestBody Policy policy) {
-		if(Objects.isNull(policy))
-		{
-			return new ResponseEntity("No Policy Found",HttpStatus.NOT_FOUND);
+		if (Objects.isNull(policy)) {
+			return new ResponseEntity("No Policy Found", HttpStatus.NOT_FOUND);
 		}
-		Policy policy1= policyImpl.addPolicy(policy);
+		Policy policy1 = policyImpl.addPolicy(policy);
 		System.out.println("Policy added");
-		return new ResponseEntity<Policy>(policy ,HttpStatus.OK);
+		return new ResponseEntity<Policy>(policy, HttpStatus.OK);
 	}
-	
-	//View All Policy
+
+	// View All Policy
 	@GetMapping("/ViewAllPolicies")
-	public ResponseEntity<List<Policy>> showAllPolicy(){
-		List<Policy> policyList=policyImpl.showAllPolicies();
-		if(policyList.isEmpty())
-		{
-			return new ResponseEntity("No policy holder present",HttpStatus.NOT_FOUND);
+	public ResponseEntity<List<Policy>> showAllPolicy() {
+		List<Policy> policyList = policyImpl.showAllPolicies();
+		if (policyList.isEmpty()) {
+			return new ResponseEntity("No policy holder present", HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<Policy>>(policyList,HttpStatus.OK); 
+		return new ResponseEntity<List<Policy>>(policyList, HttpStatus.OK);
 	}
-	
-	//View Policy by id
+
+	// View Policy by id
 	@GetMapping("/ViewPolicyById/{id}")
 	public Optional<Policy> findPolicyById(@PathVariable("id") int id) throws PolicyNotFoundException {
 		return policyImpl.findPolicyById(id);
 	}
-	
-	//View Policies under specific agent
+
+	// View Policies under specific agent
 	@GetMapping("/ViewPolicyUnderAgent/{id}")
-	public List<Policy> viewPolicyUnderAgent(@PathVariable("id") int id) throws AgentNotFoundException
-	{
+	public List<Policy> viewPolicyUnderAgent(@PathVariable("id") int id) throws AgentNotFoundException {
 		return policyImpl.viewPolicyByAgentId(id);
 	}
-	
-	//Update Policy by id
+
+	// Update Policy by id
 	@PutMapping("/UpdatePolicy")
-	public ResponseEntity<Policy> updatePolicy(@RequestBody Policy policy) throws PolicyNotFoundException
-	{
-		if(policy==null)
-			return new ResponseEntity("Policy not found to be updated",HttpStatus.NOT_FOUND);
-		return new ResponseEntity<Policy>(policyImpl.updatePolicy(policy),HttpStatus.OK);
+	public ResponseEntity<Policy> updatePolicy(@RequestBody Policy policy) throws PolicyNotFoundException {
+		if (policy == null)
+			return new ResponseEntity("Policy not found to be updated", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Policy>(policyImpl.updatePolicy(policy), HttpStatus.OK);
 	}
-	
-	//DeletePolicy by Id
+
+	// DeletePolicy by Id
 	@DeleteMapping("/DeletePolicy/{id}")
 	public String deletePolicy(@PathVariable("id") int id) throws PolicyNotFoundException {
 		return policyImpl.removePolicy(id);

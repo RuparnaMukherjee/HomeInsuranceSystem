@@ -97,7 +97,7 @@ public class TestQuote {
 		Mockito.when(quoteRepository.existsById(1)).thenReturn(true);
 		Mockito.when(quoteRepository.findById(1)).thenReturn(Optional.of(quote));
 		
-		assertEquals(quote.getQuoteId(),quoteService.findQuoteById(1).get().getQuoteId());
+		assertEquals(quote,quoteService.findQuoteById(1).get());
 	}
 	
 	@Test
