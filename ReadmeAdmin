@@ -1,0 +1,131 @@
+*Policy holder Management*/
+
+***********************************************************************************************
+
+Create: http://localhost:8081/AdminDashboard/CreatePolicyHolder
+
+	body:{
+    "policyHolderName": "Ruparna Mukherjee",
+    "policyName": "Life Home",
+    "premiumType": "Quaterly",
+    "creditCard": "Visa",
+    "dob": "1970-12-30",
+    "occupation": "Engineer",
+    "annualIncome": 20000.0,
+    "isRetired": false,
+    "ssn": "AAACC",
+    "emailId": "ruchan@mail.com",
+    "address": {
+    "residenceType":"Flat",
+	"addressLine1":"91 K road",
+	"addressLine2":"Bkp",
+	"city":"Kolkata",
+	"zip":"700111",
+	"residenceUse":"Home"
+    },    
+}
+View All Policy holders: http://localhost:8081/AdminDashboard/ViewAllPolicyHolders
+
+View Policy Holder with speicific id: http://localhost:8081/AdminDashboard/ViewPolicyHolderById/{id}
+
+View Policy Holders with no agent: http://localhost:8081/AdminDashboard/ViewIdlePolicyHolders
+
+View Policy Holder under specific agent Id:  http://localhost:8081/AdminDashboard/ViewPolicyHoldersByAgentId/{id}
+
+Update Policy Holder : http://localhost:8081/AdminDashboard/UpdatePolicyHolder
+		body:{
+    "policyHolderId":1,
+    "policyHolderName": "Ruparna Mukherjee",
+    "policyName": "Life Home",
+    "premiumType": "Quaterly",
+    "creditCard": "Visa",
+    "dob": "1970-12-30",
+    "occupation": "Engineer",
+    "annualIncome": 20000.0,
+    "isRetired": false,
+    "ssn": "AAACC",
+    "emailId": "ruchan@mail.com",
+    "address": {
+    "residenceType":"Flat",
+	"addressLine1":"91 K road",
+	"addressLine2":"Bkp",
+	"city":"Kolkata",
+	"zip":"700001",
+	"residenceUse":"Home"
+    },
+    "agent":{
+        "agentId":0,
+        "agentName" : "Ruchan", 
+		"designation " : "Sales", 
+		"salary" : "10000", 
+		"address" : "Kolkata", 
+		"email" : "ruchan@gmail.com" , 
+		"mobileNo" : "9834512567"
+   	 }
+	}
+Delete Policy Holder: http://localhost:8081/AdminDashboard/DeletePolicyHolder/1
+
+***********************************************************************************************
+
+/*Agent Management */
+
+Create Agent : http://localhost:8081/AdminDashboard/CreateAgent
+
+	body:{
+	"agentName" : "Ruchan", 
+	"designation " : "Sales", 
+	"salary" : "10000", 
+	"address" : "Kolkata", 
+	"email" : "ruchan@gmail.com" , 
+	"mobileNo" : "9834512567"
+	}
+View All agents:http://localhost:8081/AdminDashboard/ViewAllAgents
+
+View agent by Id:http://localhost:8081/AdminDashboard//ViewAgentById/{id}
+ 
+View Policy Holder by Under Specific Agent:http://localhost:8081/AdminDashboard/ViewPolicyHoldersByAgentId/{id}
+
+Update Agent : http://localhost:8081/AdminDashboard/UpdateAgent
+
+	 {
+	 "agentId": 1,
+	    "agentName": "Ruchan Ab",
+	    "designation": "Sales",   
+	 }
+	 
+Delete Agent: http://localhost:08081/AdminDashboard/DeleteAgentById/{id}
+
+***********************************************************************************************
+
+/*Policy Management*/
+
+Create Policy: http://localhost:8081/AdminDashboard/CreatePolicy
+	
+	{ 
+	    "policyId": 1,
+	    "policyEffectiveDate": "2020-12-30",
+	    "policyEndDate": "2021-12-30",
+	    "policyTerm": 2,
+	    "policyStatus": "Paid"
+	  }
+  
+ View all Policy: http://localhost:8081/AdminDashboard/ViewAllPolicies
+ 
+ View Policy by policy id:http://localhost:08081/AdminDashboard/ViewPolicyById/36
+ 
+ View Policies under specific agent:http://localhost:8081/AdminDashboard/ViewPolicyUnderAgent/{id} 
+  
+ Update Policy:http://localhost:08081/AdminDashboard/UpdatePolicy
+	 	{ 
+	   "policyId": 37,
+	    "policyEffectiveDate": null,
+	    "policyEndDate": null,
+	    "policyTerm": 0,
+	    "policyStatus": null,
+	    "agent": {
+	        "agentId":0,
+	        "agentName":"Ruchan"
+	    }
+	  }
+
+Delete Policy:http://localhost:08081/AdminDashboard/DeletePolicy/{id}

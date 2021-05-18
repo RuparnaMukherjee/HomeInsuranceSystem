@@ -1,9 +1,12 @@
 package com.cg.hims.service;
 
-import java.util.List;
+import java.util.*;
 
 import com.cg.hims.entities.Quote;
 import com.cg.hims.exceptions.QuoteNotFoundException;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 public interface IQuoteService {
 
@@ -11,9 +14,9 @@ public interface IQuoteService {
 
 	public Quote updateQuote(Quote quote) throws QuoteNotFoundException;
 
-	public Quote findQuoteById(int id) throws QuoteNotFoundException;
+	public Optional<Quote> findQuoteById(int id) throws QuoteNotFoundException;
 
-	public Quote removeQuote(int id) throws QuoteNotFoundException;
+	public String removeQuote(int id) throws QuoteNotFoundException;
 
 	public List<Quote> showAllQuotes();
 

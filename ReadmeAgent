@@ -1,0 +1,131 @@
+
+	
+AGENT MANAGEMENT CONTROLLER :-
+
+POST : Agent Creation (http://localhost:9091/agentManagement/agentCreation)
+
+ JSON Body:{
+ 	"agentId" : 1,
+	"agentName" : "Anudeep", 
+	"designation" : "Supervisor", 
+	"salary" : "50000", 
+	"address" : "Kolkata", 
+	"email" : "anudeep@gmail.com" , 
+	"mobileNo" : "9832178456"
+	}
+	
+GET : Find Agent By Id (http://localhost:9091/agentManagement/findAgent/{id})
+
+GET : View All Agents (http://localhost:9091/agentManagement/ViewAllAgents)
+
+PUT : Agent Update (http://localhost:9091/agentManagement/agentUpdate)
+
+DELETE : Agent Delete (http://localhost:9091/agentManagement/agentRemove/{id})
+
+***********************************************************************************************
+
+POLICY HOLDER MANAGEMENT :-
+
+POST : Policy Holder Creation (http://localhost:9091/policyholder/AddPolicyholder)
+
+	JOSN Body:{
+    "policyHolderId":1,
+    "policyHolderName": "Ruparna Mukherjee",
+    "policyName": "Life Home",
+    "premiumType": "Quaterly",
+    "creditCard": "Visa",
+    "dob": "1970-12-30",
+    "occupation": "Engineer",
+    "annualIncome": 20000.0,
+    "isRetired": false,
+    "ssn": "AAACC",
+    "emailId": "ruchan@gmail.com",
+    "address": {
+    "residenceType":"Flat",
+	"addressLine1":"91 K road",
+	"addressLine2":"Bkp",
+	"city":"Kolkata",
+	"state": "West Bengal",
+	"zip":"700001",
+	"residenceUse":"Home"
+    },
+    "agent":{
+        "agentId":1
+   	 }
+	}
+	
+DELETE : Policy Holder Delete (http://localhost:9091/policyholder/DeletePolicyHolder/{id})
+
+***********************************************************************************************
+POLICY MANAGEMENT :-
+
+POST : Policy Creation (http://localhost:9091/policy/CreatePolicy)
+
+	JSON Body : { 
+	   "policyId": 37,
+	    "policyEffectiveDate": "2020-12-30",
+	    "policyEndDate": "2021-12-30",
+	    "policyTerm": 1,
+	    "policyStatus": "Paid",
+	    "agent": {
+	        "agentId":1,
+	        "agentName":"Anudeep"
+	    }
+	  }
+
+DELETE : Policy Holder Delete (http://localhost:9091/policy/DeletePolicy/{id})
+
+***********************************************************************************************
+
+AGENT CONTROLLER :-
+
+1. PUT : Agent Update (http://localhost:9091/agent/agentUpdate)
+
+2. GET : Find Agent By Id (http://localhost:9091/agent/findAgent/{id})
+
+3. GET :- Policy Holder under a given Agent (http://localhost:9091/agent/ViewPolicyHolders/{agentId})
+
+4. GET :- Policies under a given Agent (http://localhost:9091/agent/ViewPolicies/{agentId})
+
+5. POST :- Create Property (http://localhost:9091/agent/addProperty)
+
+	JSON Body :- {
+	     "property_id":1,
+	     "marketValue":250000,
+		 "yearBuilt":2010,
+		 "squareFootage": 750,
+		 "dwellingStyle": 1000.0,
+		 "roofMaterial":"Tin",
+		 "garageType": "Single Parking",
+		 "fullBathCount": 2,
+		 "halfBathCount": 0,
+	     "hasSwimmingPool":false
+ 	  }
+
+6. GET :- View Properties By Agent Id (http://localhost:9091/agent/ViewProperties/{agentId})
+
+7. POST :- Create Quotation (http://localhost:9091/agent/CreateQuote)
+
+	JSON Body :- {
+	     "quoteId":1,
+	     "premiumType":"Quarter",
+		 "premium":2,
+		 "dwellingCoverage":1000,
+		 "detachedStructureCoverage":1500,
+		 "personalPropertyCoverage":2000,
+		 "additionalLivingExpense":1500,
+		 "medicalExpense":1500,
+		 "deductibleAmount":2000,
+	     "policy":{
+	          "policyId":37
+	      },
+	     "property":{
+	        "propertyId":1
+	      }
+ 	  }
+
+8. GET :- View All Quotes (http://localhost:9091/agent/ViewAllQuotes)
+
+9. GET :- View Quote By Id (http://localhost:9091/agent/ViewQuoteById/{id})
+
+10. PUT :- Update Quote (http://localhost:9091/agent/UpdateQuote)

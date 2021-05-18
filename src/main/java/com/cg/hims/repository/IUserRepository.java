@@ -1,11 +1,9 @@
 package com.cg.hims.repository;
 
-import com.cg.hims.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IUserRepository {
-	public User addNewUser(User user);
+import com.cg.hims.entities.UserTable;
 
-	public User signIn(User user);
+public interface IUserRepository extends JpaRepository<UserTable, String> {
 
-	public User signOut(User user);
 }

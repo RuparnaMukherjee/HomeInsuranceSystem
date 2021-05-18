@@ -1,11 +1,10 @@
 package com.cg.hims.service;
 
-import com.cg.hims.entities.User;
+import com.cg.hims.entities.UserTable;
+import com.cg.hims.exceptions.UserNotFoundException;
 
 public interface IUserService {
-	public User addNewUser(User user);
+	public UserTable addNewUser(UserTable user);
 
-	public User signIn(User user);
-
-	public User signOut(User user);
+	public String signIn(String userName,String password)throws UserNotFoundException;
 }

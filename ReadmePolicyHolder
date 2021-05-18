@@ -1,0 +1,55 @@
+Policy holder Management/
+
+*********************************
+
+http://localhost:8004/policyholderDashboard/AddPolicyholderdetails
+
+body:{     
+      "policyHolderId":1,
+	  "policyHolderName":"Itachi Uchiha",
+	  "policyName":"MG Gold Home Insurance",
+	  "premiumType":"Platinum",
+	  "creditCard":"visa",
+	  "dob":"07/07/1997",
+	  "occupation":"Government Employee",
+	  "annualIncome":100000,
+	  "isRetired":"YES",
+	  "ssn":"15241524",
+	  "emailId":"uchiha.itachi@mail.com",
+      "address":{
+                     "addressId":1,
+                     "residenceType":"Apartment",
+                     "addressLine1":"21, Rajani Sen Road, Kolkata-700029",
+                     "addressLine2":"Loknath Apartments,MG Road,Delhi-100003",
+                     "city":"Kolkata",
+                     "state":"West Bengal",
+                     "zip":"712103",
+                     "residenceUse":"Living"
+                 },
+      
+      "policy":{
+                     "policyId":1,
+	                 "policyEffectiveDate":"07/07/2001",
+                     "policyEndDate":"07,07,2011",
+	                 "policyTerm":10,
+	                 "policyStatus":"Active",
+                     "agent":{
+                                "agentId":1
+                              }
+                },
+       
+       "agent":{
+                     "agentId":1,
+                     "agentName":"Ramesh kumar",
+	                 "designation":"Captive",
+	                 "salary":"15000",
+	                 "address":"10,Armherst Street,Kolkata-700056",
+	                 "email":"kumar.ramesh@mail.com",
+                     "mobileNo":"5600234589"
+                }
+}
+
+http://localhost:8004/policyholderDashboard/ViewPolicyHolderByEmailId/{id}
+http://localhost:8004/policyholderDashboard/ViewAllPolicies
+http://localhost:8004/policyholderDashboard/ViewAllAgents
+http://localhost:8004/policyholderDashboard/UpdatePolicyHolder
