@@ -3,8 +3,6 @@ package com.cg.hims.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.cg.hims.entities.Agent;
 import com.cg.hims.entities.PolicyHolder;
@@ -35,6 +35,8 @@ public class AgentManagementController{
 	
 	@Autowired
 	 IAgentServiceImpl serviceobj;
+	
+	static final Logger LOGGER = LoggerFactory.getLogger(AgentManagementController.class);
 
 /***************************************************************************************/
 	// Create Agent
@@ -43,7 +45,7 @@ public class AgentManagementController{
 		if(agent.getAgentId()==0)
 			return new ResponseEntity("Invalid",HttpStatus.NOT_FOUND);
 		Agent agentImpl=serviceobj.addAgent(agent);
-		System.out.println("Agent Added!!!");
+		LOGGER.info("Agent Added!!!");
 		return new ResponseEntity<Agent>(agentImpl,HttpStatus.OK);
 	}
 

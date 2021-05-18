@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cg.hims.entities.Quote;
 import com.cg.hims.exceptions.QuoteNotFoundException;
 import com.cg.hims.service.IQuoteService;
@@ -33,6 +36,8 @@ public class QuoteManagementController {
 	/* Autowired Quote Service Class object */
 	@Autowired
 	IQuoteService quoteImpl;
+	
+	static final Logger LOGGER = LoggerFactory.getLogger(QuoteManagementController.class);
 
 	/************************************************************************************
 	 * Method: addQuote 
@@ -49,7 +54,7 @@ public class QuoteManagementController {
 	public ResponseEntity<Quote> addQuote(@RequestBody Quote quote) {
 		if (quote == null)
 			return new ResponseEntity("Quote Empty", HttpStatus.NOT_FOUND);
-		System.out.println("Quote Created");
+		LOGGER.info("Quote Created");
 		Quote quote1 = quoteImpl.addQuote(quote);
 		return new ResponseEntity<Quote>(quote, HttpStatus.OK);
 	}

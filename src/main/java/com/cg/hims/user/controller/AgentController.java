@@ -3,6 +3,8 @@ package com.cg.hims.user.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,7 @@ Date Created : 14/05/2021*/
 @RequestMapping("/agent")
 public class AgentController {
 	
+	static final Logger LOGGER = LoggerFactory.getLogger(AgentController.class);   //logger object
 /***************************************************************************************/
 	
 	/*
@@ -88,7 +91,7 @@ public class AgentController {
 			return new ResponseEntity("Quote Empty",HttpStatus.NOT_FOUND);
 		if(quote.getPolicy()==null || quote.getProperty()==null)
 			return new ResponseEntity("Policy or Property missing",HttpStatus.NOT_FOUND);
-		System.out.println("Quote Created");
+		LOGGER.info("Quote Created");
 		Quote quote1= quoteImpl.addQuote(quote);
 		return new ResponseEntity <Quote>(quote ,HttpStatus.OK);
 	}
@@ -162,7 +165,7 @@ public class AgentController {
 		
 		if(property==null)
 			return new ResponseEntity("Property empty",HttpStatus.NOT_FOUND);
-		System.out.println("Property added ");
+		LOGGER.info("Property added ");
 		Property pro=propertyimpl.addProperty(property);
 		return new ResponseEntity<Property>(property,HttpStatus.OK);
 	}

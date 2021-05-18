@@ -1,5 +1,6 @@
 package com.cg.hims.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +14,10 @@ public class Quote {
 	
 	@Id
 	private int quoteId;
+	@Column(nullable=false)
 	private String premiumType;
 	private double premium;
+	@Column(nullable=false)
 	private double dwellingCoverage;
 	private double detachedStructureCoverage;
 	private double personalPropertyCoverage;

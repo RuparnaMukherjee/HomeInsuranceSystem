@@ -2,6 +2,7 @@ package com.cg.hims.controllers;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,19 @@ import com.cg.hims.exceptions.PropertyNotFoundException;
 import com.cg.hims.entities.Property;
 
 import com.cg.hims.service.IPropertyServiceImpl;
+
+
+/*Controller Class for Property Management*/
+
+
 @RestController
 @RequestMapping("/property")
-public class PropertyManagementController{
+public class PropertyManagementController {
 	@Autowired
 	IPropertyServiceImpl propertyimpl;
+	
+	
+	//Create new Property
 	
 	@PostMapping("/addProperty")
 	public ResponseEntity<Property> addProperty(@RequestBody Property property) {
@@ -37,6 +46,7 @@ public class PropertyManagementController{
 		return new ResponseEntity<Property>(property,HttpStatus.OK);
 	}
 	
+	//View all property
 	
 	@GetMapping("/ViewAllProperty")
 	public ResponseEntity<List<Property>> showAllProperty(){
@@ -46,14 +56,14 @@ public class PropertyManagementController{
 		return new ResponseEntity<List<Property>>(property,HttpStatus.OK);
 	}
 	
-	
+	//View property By given Id
 	@GetMapping("/ViewPropertyById/{id}")
-	public Optional<Property> findPropertyById(@PathVariable("id") int id) throws PropertyNotFoundException
+	public Optional<Property> findPropertyById(@PathVariable("id")int id) throws PropertyNotFoundException
 	{
 		return propertyimpl.findPropertyByid(id);
 	}
 	
-	
+	//Update Existing Property
 	@PutMapping("/updateProperty")
 	public ResponseEntity<Property> updateProperty(@RequestBody Property property) throws PropertyNotFoundException
 	{
@@ -62,7 +72,7 @@ public class PropertyManagementController{
 		return new ResponseEntity<Property>(propertyimpl.updateProperty(property),HttpStatus.OK);
 	}
 	
-	
+	//Delete a Property
 	@DeleteMapping("/DeleteProperty/{id}")
 	public String DeleteProperty(@PathVariable("id")int id) throws PropertyNotFoundException
 {

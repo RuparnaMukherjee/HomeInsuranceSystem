@@ -14,6 +14,9 @@ import com.cg.hims.entities.UserTable;
 import com.cg.hims.exceptions.UserNotFoundException;
 import com.cg.hims.service.IUserServiceImpl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +35,8 @@ public class UserManagementController {
 	HttpSession session;
 	@Autowired
 	IUserServiceImpl userImpl;
+	
+	static final Logger LOGGER = LoggerFactory.getLogger(UserManagementController.class);
 	
 	/* Method: Authenticate
 	 * Description: It allows to authenticate the user.
@@ -73,7 +78,7 @@ public class UserManagementController {
 	
 	@PostMapping("/Login")
 	public String login(@RequestParam String userName,@RequestParam String password) throws UserNotFoundException {
-		System.out.println(userName+","+password);
+		LOGGER.info(userName+","+password);
 		return userImpl.signIn(userName, password);
 	}
 

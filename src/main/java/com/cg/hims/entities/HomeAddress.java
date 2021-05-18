@@ -12,7 +12,7 @@ public class HomeAddress {
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int addressId;
 	private String residenceType;
 	private String addressLine1;

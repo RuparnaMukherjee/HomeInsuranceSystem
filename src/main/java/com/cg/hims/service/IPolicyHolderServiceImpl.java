@@ -110,7 +110,7 @@ public class IPolicyHolderServiceImpl implements IPolicyHolderService {
 	 * Method: removePolicyHolder 
 	 * Description: It is used to remove PolicyHolder from PolicyHolders table
 	 * @param PolicyHolder: int PolicyHolderid
-	 * @returns PolicyHolder It returns PolicyHolder with details
+	 * @returns String It returns String for successful deletion or not
 	 * @Override:  It is used to override the JpaRepository methods for performing CURD operations.
 	 * Created By-RIDDHIMAN GHOSH ROY
      * Created Date 18-05-2021 

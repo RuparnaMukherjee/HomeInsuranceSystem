@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.cg.hims.entities.Agent;
 import com.cg.hims.entities.Policy;
 import com.cg.hims.entities.PolicyHolder;
@@ -36,6 +37,8 @@ import com.cg.hims.service.IPolicyServiceImpl;
 @RestController
 @RequestMapping("/AdminDashboard")
 public class AdminController {
+
+	static final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);   //logger object
 
 	/************************************************************************************
 	 *Service Objects Autowired
@@ -68,7 +71,7 @@ public class AdminController {
 			return new ResponseEntity("No Policy Holder Found", HttpStatus.NOT_FOUND);
 		}
 		PolicyHolder holder1 = holderImpl.addPolicyHolder(policyHolder);
-		System.out.println("policy Holder added");
+		LOGGER.info("policy Holder added");
 		return new ResponseEntity<PolicyHolder>(policyHolder, HttpStatus.OK);
 	}
 
@@ -182,7 +185,7 @@ public class AdminController {
 			return new ResponseEntity("No Agent Found", HttpStatus.NOT_FOUND);
 		}
 		Agent agent1 = agentImpl.addAgent(agent);
-		System.out.println("Agent added");
+		LOGGER.info("Agent added");
 		return new ResponseEntity<Agent>(agent, HttpStatus.OK);
 	}
 
@@ -295,7 +298,7 @@ public class AdminController {
 			return new ResponseEntity("No Policy Found", HttpStatus.NOT_FOUND);
 		}
 		Policy policy1 = policyImpl.addPolicy(policy);
-		System.out.println("Policy added");
+		LOGGER.info("Policy added");
 		return new ResponseEntity<Policy>(policy, HttpStatus.OK);
 	}
 
